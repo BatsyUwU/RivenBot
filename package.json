@@ -1,0 +1,30 @@
+{
+  "name": "elysium",
+  "version": "2.0.0-beta",
+  "description": "Management Server",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node src/bot.js",
+    "test": "test --passWithNoTests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XRzky/Elysium-bot.git"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "Rygent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/XRzky/Elysium-bot/issues"
+  },
+  "homepage": "https://github.com/XRzky/Elysium-bot#readme",
+  "dependencies": {
+    "ascii-table": "0.0.9",
+    "common-tags": "^1.8.0",
+    "discord.js": "^12.1.1",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security"
+  }
+}
