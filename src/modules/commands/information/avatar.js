@@ -21,7 +21,7 @@ module.exports = {
         let avatarEmbed = new MessageEmbed()
             .setColor(roleColor === '#000000' ? Colors.CUSTOM : roleColor)
             .setTitle(`🖼️ ${target.tag}'s avatar`)
-            .setDescription(`🔗 **[Original Resolution](${target.displayAvatarURL({ format: "png", dynamic: true, size: 2048 })})**`)
+            .setDescription(`🔗 **[HD Resolution](${target.displayAvatarURL({ format: "png", dynamic: true, size: 4096 })})**`)
             .setImage(target.displayAvatarURL({ format: "png", dynamic: true, size: 512 }))
             .setFooter(`Requested by ${message.member.user.tag}`, message.member.user.avatarURL())
             .setTimestamp();

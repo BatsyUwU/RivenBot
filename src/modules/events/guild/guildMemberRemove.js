@@ -7,7 +7,7 @@ module.exports = async (bot, member) => {
     let embed = new MessageEmbed()
         .setAuthor("Member Left", member.user.avatarURL())
         .setDescription(`${member} ${member.user.tag}`)
-        .setThumbnail(member.user.avatarURL())
+        .setThumbnail(member.user.avatarURL({ format: "png", dynamic: true, size: 4096 }))
         .setColor(Colors.RED)
         .setFooter(`ID: ${member.user.id}`)
         .setTimestamp();
