@@ -8,12 +8,12 @@ If you wish to contribute to the EviraBot codebase, feel free to fork this repos
 
 To get ready to work on the codebase, please do the following:
 
-1. Fork & Clone this repository (Branch: master)
-    - Execute `$ git clone https://github.com/XRzky/Evira-Bot.git --branch master`
+1. Fork & Clone this repository (Branch: beta)
+    - Execute `$ git clone https://github.com/XRzky/AkiraBot.git --branch beta`
 
 2. Now you have to execute a few commands in the folder in which you cloned LenoxBot:
     - `$ npm install`
 
 3. Code and have fun!
 
-4. [Submit a pull request on GitHub](https://github.com/XRzky/Evira-Bot/compare)
+4. [Submit a pull request on GitHub](https://github.com/XRzky/AkiraBot/compare)
