@@ -23,7 +23,7 @@ module.exports = {
             .setTitle(`🖼️ ${target.tag}'s avatar`)
             .setDescription(`🔗 **[HD Resolution](${target.displayAvatarURL({ format: "png", dynamic: true, size: 4096 })})**`)
             .setImage(target.displayAvatarURL({ format: "png", dynamic: true, size: 512 }))
-            .setFooter(`Requested by ${message.member.user.tag}`, message.member.user.avatarURL())
+            .setFooter(`Requested by ${message.member.user.tag}`, message.member.user.avatarURL({ dynamic: true }))
             .setTimestamp();
 
         message.channel.send(avatarEmbed);

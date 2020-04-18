@@ -18,14 +18,14 @@ module.exports = {
         
         const embed = new MessageEmbed()
             .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-            .setAuthor(`${bot.user.username} Help`, message.guild.iconURL())
+            .setAuthor(`${bot.user.username} Help`, message.guild.iconURL({ dynamic: true }))
             .setThumbnail(bot.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }));
 
         if(!args[0]) {
             const categories = readdirSync("./src/modules/commands/");
 
             embed.setDescription(`These are the avaliable commands for ${bot.user.username}.\nThe bot prefix is: **${Client.PREFIX}**`);
-            embed.setFooter(`Based on ${bot.user.username} | Total Commands: ${bot.commands.size}`, bot.user.displayAvatarURL())
+            embed.setFooter(`Based on ${bot.user.username} | Total Commands: ${bot.commands.size}`, bot.user.displayAvatarURL({ dynamic: true }))
             embed.setTimestamp();
 
             categories.forEach(category => {
