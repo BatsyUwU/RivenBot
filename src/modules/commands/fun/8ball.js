@@ -14,17 +14,18 @@ module.exports = {
         accessableby: "Members"
     },
     run: async (bot, message, args) => {
-        if (!args[1])
-            return Errors.wrongText(message, "Please provide a question for me to answer.");
-        
+        if (!args[1]) {
+            return Errors.wrongText(message, "Please provide a question for me to answer.")
+        };
+
         const roleColor = message.guild.me.roles.highest.hexColor;
         
         let ballEmbed = new MessageEmbed()
             .setColor(roleColor === '#000000' ? Colors.CUSTOM : roleColor)
             .setTitle(`🎱 ${args.slice(0).join(" ")}`)
             .setDescription(`❯  ${eightBall[Math.floor(Math.random() * eightBall.length).toString(10)]}`)
-            .setFooter(`Requested by ${message.member.user.tag}`, message.member.user.avatarURL())
-            .setTimestamp();;
+            .setFooter(`Requested by ${message.member.user.tag}`, message.member.user.avatarURL({ dynamic: true }))
+            .setTimestamp();
         
         message.channel.send(ballEmbed);
     }
