@@ -2,27 +2,27 @@
 
 <p align="center">
 <br>
-<a href="https://discord.gg/GG69j8w"> 
-    <img src="https://img.shields.io/discord/646882466333851668.svg?colorB=7289da&logo=discord&logoColor=white&label=Support&style=for-the-badge" alt="Support">
+<a> 
+    <img src="https://img.shields.io/discord/439323863139090434.svg?color=7289da&logo=discord&logoColor=white&label=Support&style=for-the-badge" alt="Support">
 </a>
 <a href="https://travis-ci.com/XRzky/AkiraBot">
-    <img src="https://img.shields.io/travis/com/XRzky/AkiraBot.svg?style=for-the-badge" alt="Build">
+    <img src="https://img.shields.io/travis/com/XRzky/AkiraBot/beta.svg?logo=travis&logoColor=white&style=for-the-badge" alt="Build">
 </a>
-<a href="https://github.com/XRzky/AkiraBot">
-    <img src="https://img.shields.io/github/languages/top/XRzky/AkiraBot.svg?colorB=f0db4f&style=for-the-badge" alt="Languages">
+<a>
+    <img src="https://img.shields.io/github/languages/top/XRzky/AkiraBot.svg?color=f0db4f&logo=javascript&logoColor=white&style=for-the-badge" alt="Languages">
 </a>
-<a href="https://github.com/XRzky/AkiraBot/blob/beta/LICENSE">
+<a>
     <img src="https://img.shields.io/github/license/XRzky/AkiraBot?color=blue&style=for-the-badge" alt="License">
 </a>
 <br>
 <a href="https://github.com/XRzky/AkiraBot/tree/beta">
-    <img src="https://img.shields.io/github/package-json/v/XRzky/AkiraBot.svg?colorB=Orange&style=for-the-badge" alt="Version">
+    <img src="https://img.shields.io/github/package-json/v/XRzky/AkiraBot/beta.svg?label=Version&logo=node.js&logoColor=white&style=for-the-badge" alt="Version">
 </a>
 <a href="https://github.com/XRzky/AkiraBot/issues">
-    <img src="https://img.shields.io/github/issues/XRzky/AkiraBot.svg?style=for-the-badge&colorB=37f149" alt="Issues">
+    <img src="https://img.shields.io/github/issues/XRzky/AkiraBot.svg?color=37f149&logo=github&logoColor=white&style=for-the-badge" alt="Issues">
 </a>
 <a href="https://github.com/XRzky/AkiraBot/pulls">
-    <img src="https://img.shields.io/github/issues-pr/XRzky/AkiraBot.svg?style=for-the-badge&colorB=37f149" alt="Pull Request">
+    <img src="https://img.shields.io/github/issues-pr/XRzky/AkiraBot.svg?color=37f149&logo=github&logoColor=white&style=for-the-badge" alt="Pull Request">
 </a>
 </p>
 
