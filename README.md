@@ -65,6 +65,7 @@ You can find all settings in the **settings.js** file, without filling in all th
 | `BOT_TOKEN`        | Your discord api token        | NjQ4XXXXXX   |
 | `CHANNEL_JOIN`     | Channel for welcome greeter   | join-leave   |
 | `CHANNEL_LEAVE`    | Channel for left guild        | join-leave   |
+| `CHANNEL_INCIDENT` | Channel for incident guild    | incident     |
 | `OWNER_ID`         | Your discord id               | 4275XXXXXX   |
 | `PREFIX`           | Prefix to use before commands | ?            |
 | `TZ`               | Localhost timezone            | Asia/Jakarta |

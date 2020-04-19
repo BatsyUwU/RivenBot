@@ -4,7 +4,8 @@ module.exports = {
     },
     Action: {
         "JOIN": `${process.env.CHANNEL_JOIN}`,
-        "LEAVE": `${process.env.CHANNEL_LEAVE}`
+        "LEAVE": `${process.env.CHANNEL_LEAVE}`,
+        "INCIDENT": `${process.env.CHANNEL_INCIDENT}`
     },
     Client: {
         "PREFIX": `${process.env.PREFIX}`
