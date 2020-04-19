@@ -6,7 +6,7 @@ module.exports = {
         name: "setstatus",
         aliases: ["status"],
         category: "owner",
-        description: "Sets Amaterasu's presence/status.",
+        description: "Sets bot's presence/status.",
         usage: "<online/idle/dnd/invisible>",
         example: "idle",
         accessableby: "Owners"
