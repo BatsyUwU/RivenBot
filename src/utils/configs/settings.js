@@ -35,5 +35,11 @@ module.exports = {
         "LUMINOUS_VIVID_PINK": "fd0061",
         "DARK_VIVID_PINK": "bc0057",
         "CUSTOM": "2ecc71"
+    },
+    Emotes: {
+        "ONLINE": "<:online:701157757016997976>",
+        "IDLE": "<:idle:701157822179573783>",
+        "DND": "<:dnd:701157844346470472>",
+        "INVISIBLE": "<:invisible:701157859349626943>"
     }
 };
