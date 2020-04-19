@@ -7,11 +7,11 @@ const moment = require("moment");
 module.exports = {
     config: {
         name: "kick",
-        aliases: ["kek"],
+        aliases: ["boot"],
         category: "moderation",
-        description: "Kick a user from the discord server with a certain reason",
+        description: "Kicks the mentioned user from the server.",
         usage: "<user> <reason>",
-        example: "@Ryevi Break the rules",
+        example: "@Ryevi spamming",
         accessableby: "Moderators"
     },
     run: async (bot, message, args) => {
