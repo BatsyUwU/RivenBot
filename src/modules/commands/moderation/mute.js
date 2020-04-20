@@ -15,6 +15,10 @@ module.exports = {
         accessableby: "Moderators"
     },
     run: async (bot, message, args) => {
+        if (message.deletable) {
+            message.delete()
+        };
+
         if(!message.member.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) return Errors.userPerms(message, "Manage Roles");
 
         if(!message.guild.me.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) return Errors.botPerms(message, "Manage Roles");
