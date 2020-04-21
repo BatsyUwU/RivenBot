@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { Colors } = require("../../../utils/configs/settings");
+const { Colors, Emotes } = require("../../../utils/configs/settings");
 const { stripIndents } = require("common-tags");
 const moment = require("moment");
 
@@ -45,8 +45,6 @@ module.exports = {
         };
         
         const roleColor = message.guild.me.roles.highest.hexColor;
-
-        const online = message.guild.members.cache.filter(member => member.user.presence.status == "online").size;
         
         let serverEmbed = new MessageEmbed()
             .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
