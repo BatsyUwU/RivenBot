@@ -21,7 +21,7 @@ module.exports = {
             "online": `${Emotes.ONLINE} Online`,
             "idle": `${Emotes.IDLE} Idle`,
             "dnd": `${Emotes.DND} Do Not Disturb`,
-            "invisible": `${Emotes.INVISIBLE} Invisible`
+            "offline": `${Emotes.OFFLINE} Offline`
         };
 
         const roles = member.roles.cache.sort((a, b) => b.position - a.position).filter(r => r.id !== message.guild.id).map(r => r.name).join(", ") || "None";

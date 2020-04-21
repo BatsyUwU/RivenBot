@@ -20,8 +20,8 @@ module.exports = {
         let status = {
             "online": `${Emotes.ONLINE} Online`,
             "idle": `${Emotes.IDLE} Idle`,
-            "dnd": `${Emotes.DND} DND`,
-            "invisible": `${Emotes.INVISIBLE} Invisible`
+            "dnd": `${Emotes.DND} Do Not Disturb`,
+            "invisible": `${Emotes.OFFLINE} Offline`
         };
 
         const roleColor = message.guild.me.roles.highest.hexColor;
