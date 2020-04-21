@@ -4,7 +4,7 @@ module.exports = {
     config: {
         name: "ping",
         aliases: ["pong"],
-        category: "core",
+        category: "information",
         description: "Displays bot latency and API response times.",
         usage: "",
         example: "",

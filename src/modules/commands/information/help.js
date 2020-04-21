@@ -7,7 +7,7 @@ module.exports = {
     config: {
         name: "help",
         aliases: ["h", "halp", "commands"],
-        category: "core",
+        category: "information",
         description: "Displays all commands that the bot has.",
         usage: "[command | alias]",
         example: "ping",
