@@ -41,7 +41,7 @@ module.exports = {
     
         const statsEmbed = new MessageEmbed()
             .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-            .setAuthor(`${bot.user.username}"s statistics information`, bot.user.avatarURL({ dynamic: true }))
+            .setAuthor(`${bot.user.username}'s statistics information`, bot.user.avatarURL({ dynamic: true }))
             .addField(`Used`, stripIndents`
                 RAM: ${diagramMaker(usedRAM, freeRAM)} [${Math.round(100 * usedRAM / (usedRAM + freeRAM))}%]
                 CPU: ${diagramMaker(cpuUsage, 100-cpuUsage)} [${Math.round(cpuUsage)}%]`)
