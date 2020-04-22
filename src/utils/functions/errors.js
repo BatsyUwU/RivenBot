@@ -20,7 +20,7 @@ module.exports.userPerms = (message, perm) => {
     let replyEmbed = new MessageEmbed()
         .setColor(Colors.RED)
         .setTitle("Insufficient Permission.")
-        .setDescription(`💢 **${message.author.tag}**, You don't have Permissions ${perm} to do that.`)
+        .setDescription(`💢 **${message.author.tag}**, You don't have \`${perm}\` permission.`)
         .setFooter(message.author.tag)
         .setTimestamp();
 
@@ -35,7 +35,7 @@ module.exports.botPerms = (message, perm) => {
     let replyEmbed = new MessageEmbed()
         .setColor(Colors.RED)
         .setTitle("Insufficient Permission.")
-        .setDescription(`💢 **${message.author.tag}**, I don't have Permissions ${perm} to do that.`)
+        .setDescription(`💢 **${message.author.tag}**, I don't have \`${perm}\` permission.`)
         .setFooter(message.author.tag)
         .setTimestamp();
 
@@ -49,8 +49,23 @@ module.exports.botPerms = (message, perm) => {
 module.exports.wrongText = (message, text) => {
     let replyEmbed = new MessageEmbed()
         .setColor(Colors.RED)
-        .setTitle("Something wrong!")
+        .setTitle("Error!")
         .setDescription(`💢 **${message.author.tag}**, ${text}`)
+        .setFooter(message.author.tag)
+        .setTimestamp();
+
+    if (message.author.avatarURL() != null) {
+        replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
+    };
+
+    message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
+};
+
+module.exports.noMention = (message, text) => {
+    let replyEmbed = new MessageEmbed()
+        .setColor(Colors.RED)
+        .setTitle("Couldn't find a user.")
+        .setDescription(`💢 **${message.author.tag}**, Please mention a user to ${text}.`)
         .setFooter(message.author.tag)
         .setTimestamp();
 
