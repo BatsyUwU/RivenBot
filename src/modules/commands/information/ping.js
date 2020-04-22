@@ -21,7 +21,7 @@ module.exports = {
         return msg.edit(
             stripIndents`
             🏓 Pong: \`${ping}ms\`
-            💓 Heartbeat: \`${Math.round(message.client.ping)}ms\`
+            💓 Heartbeat: \`${Math.round(message.client.ws.ping)}ms\`
             `,
         );
     }
