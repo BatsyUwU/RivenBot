@@ -1,6 +1,7 @@
 module.exports = {
     Access: {
-        "OWNERS": `${process.env.OWNER_ID}`
+        "OWNERS": `${process.env.OWNER_ID}`,
+        "OPENWEATHER_KEY": `${process.env.OPEN_WEATHER_APPID}`
     },
     Action: {
         "JOIN": `${process.env.CHANNEL_JOIN}`,

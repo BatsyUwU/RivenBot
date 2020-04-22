@@ -75,3 +75,18 @@ module.exports.noMention = (message, text) => {
 
     message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
 };
+
+module.exports.resStatus = (code, message, text) => {
+    let replyEmbed = new MessageEmbed()
+        .setColor(Colors.RED)
+        .setTitle(`Error code ${code}`)
+        .setDescription(`💢 **${message.author.tag}**, ${text}`)
+        .setFooter(message.author.tag)
+        .setTimestamp();
+
+    if (message.author.avatarURL() != null) {
+        replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
+    };
+
+    message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
+};

@@ -60,15 +60,16 @@ node src/bot.js
 ## Configuration
 You can find all settings in the **settings.js** file, without filling in all the details some features might not work as expected. Below you can find a quick summary of all settings in the **.env** file
 
-| Key                | Value                         | Example      |
-| :---               | :---                          | :---         |
-| `BOT_TOKEN`        | Your discord api token        | NjQ4XXXXXX   |
-| `CHANNEL_JOIN`     | Channel for welcome greeter   | join-leave   |
-| `CHANNEL_LEAVE`    | Channel for left guild        | join-leave   |
-| `CHANNEL_INCIDENT` | Channel for incident guild    | incident     |
-| `OWNER_ID`         | Your discord id               | 4275XXXXXX   |
-| `PREFIX`           | Prefix to use before commands | ?            |
-| `TZ`               | Localhost timezone            | Asia/Jakarta |
+| Key                  | Value                         | Example      |
+| :---                 | :---                          | :---         |
+| `BOT_TOKEN`          | Your discord api token        | NjQ4XXXXXX   |
+| `CHANNEL_JOIN`       | Channel for welcome greeter   | join-leave   |
+| `CHANNEL_LEAVE`      | Channel for left guild        | join-leave   |
+| `CHANNEL_INCIDENT`   | Channel for incident guild    | incident     |
+| `OPEN_WEATHER_APPID` | Input your OpenWeather AppID  | 0c58XXXXXX   |
+| `OWNER_ID`           | Your discord id               | 4275XXXXXX   |
+| `PREFIX`             | Prefix to use before commands | ?            |
+| `TZ`                 | Localhost timezone            | Asia/Jakarta |
 
 ## Contributing
 If you want to contribute to this project you can follow the steps below.
