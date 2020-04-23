@@ -3,7 +3,7 @@ const { Colors } = require("../../../utils/configs/settings");
 const { stripIndents } = require("common-tags");
 const Errors = require("../../../utils/functions/errors");
 const Languages = require("../../../assets/json/translate.json");
-const translate = require("google-translate-api");
+const translate = require("@vitalets/google-translate-api");
 
 module.exports = {
     config: {
