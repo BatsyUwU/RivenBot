@@ -35,7 +35,8 @@ module.exports = {
         "DARK_NAVY": "2c3e50",
         "LUMINOUS_VIVID_PINK": "fd0061",
         "DARK_VIVID_PINK": "bc0057",
-        "CUSTOM": "2ecc71"
+        "CUSTOM": "2ecc71",
+        "G_TRANSLATE": "4989f4"
     },
     Emotes: {
         "ONLINE": "<:online:702005110636806275>",
