@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { Emotes } = require("../../../utils/configs/settings");
+const { Colors, Emotes } = require("../../../utils/configs/settings");
 const { getMember } = require("../../../utils/functions/functions");
 const { stripIndents } = require("common-tags");
 const moment = require("moment");
@@ -27,11 +27,12 @@ module.exports = {
         const roles = member.roles.cache.sort((a, b) => b.position - a.position).filter(r => r.id !== message.guild.id).map(r => r.name).join(", ") || "None";
 
         const userEmbed = new MessageEmbed()
-            .setColor(member.displayHexColor === "#000000" ? "#ffffff" : member.displayHexColor)
-            .setAuthor(member.user.tag, member.user.avatarURL({ dynamic: true }))
+            .setColor(member.displayHexColor === "#000000" ? Colors.CUSTOM : member.displayHexColor)
+            .setAuthor(`User Information for ${member.user.username}`, member.user.avatarURL({ dynamic: true }))
             .setThumbnail(member.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
             .addField("❯ Details", stripIndents`
                 • **Nickname:** ${member.nickname || "None"}
+                • **Tag:** ${member.user.tag}
                 • **ID:** ${member.user.id}
                 • **Status:** ${status[member.user.presence.status]}
                 • **Activity:** ${member.user.presence.activities}`)
