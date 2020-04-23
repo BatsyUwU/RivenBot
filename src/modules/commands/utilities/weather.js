@@ -29,21 +29,33 @@ module.exports = {
                 return Errors.resStatus("401", message, "Invalid API Key!");
             };
 
-            var embedColour;
+            var tempColors;
             if (res.main.temp < 0) {
-                embedColour = "#addeff";
+                tempColors = "#CCF3FF";
+            } else if (res.main.temp < 5) {
+                tempColors = "#BFF0FF";
+            } else if (res.main.temp < 10) {
+                tempColors = "#B4FF92";
+            } else if (res.main.temp < 15) {
+                tempColors = "#8CF974"
             } else if (res.main.temp < 20) {
-                embedColour = "#4fb8ff";
-            } else if (res.main.temp < 26) {
-                embedColour = "#ffea4f";
-            } else if (res.main.temp < 31) {
-                embedColour = "#ffa14f"
+                tempColors = "#ECFF7A"
+            } else if (res.main.temp < 25) {
+                tempColors = "#FFC97A"
+            } else if (res.main.temp < 30) {
+                tempColors = "#FF6E46"
+            } else if (res.main.temp < 35) {
+                tempColors = "#FF4B22"
+            } else if (res.main.temp < 40) {
+                tempColors = "#FF3C22"
+            } else if (res.main.temp > 40) {
+                tempColors = "#BD0000"
             } else {
-                embedColour = "#ff614f"
+                tempColors = "#74CDFF"
             };
 
             const weatherEmbed = new MessageEmbed()
-                .setColor(embedColour)
+                .setColor(tempColors)
                 .setAuthor("Today's weather",  "https://cdn1.iconfinder.com/data/icons/weather-429/64/weather_icons_color-06-512.png")
                 .setTitle(`:flag_${res.sys.country.toLowerCase()}: ${res.name} - ${res.weather[0].main}`)
                 .setDescription(`${res.weather[0].description[0].toUpperCase()}${res.weather[0].description.slice(1)}`)
