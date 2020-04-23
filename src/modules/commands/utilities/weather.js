@@ -67,8 +67,9 @@ module.exports = {
                 .addField("Min. Temp", `${res.main.temp_min}°C | ${(res.main.temp_min*1.8+32).toFixed(2)}°F`, true)
                 .addField("Max. Temp", `${res.main.temp_max}°C | ${(res.main.temp_max*1.8+32).toFixed(2)}°F`, true)
                 .addField("Clouds", `${res.clouds.all}%`, true)
-                .addField("Pressure", `${res.main.pressure} hPa`, true)
-                .addField("Wind Speed", `${(res.wind.speed*3.6).toFixed(2)} kmh | ${(res.wind.speed*2.2369).toFixed(2)} mph, ${res.wind.deg}°`, true)
+                .addField("Pressure", `${res.main.pressure} hpa`, true)
+                .addField("Latitude | Longitude", `${res.coord.lat} | ${res.coord.lon}`, true)
+                .addField("Wind Speed", `${(res.wind.speed*3.6).toFixed(2)} kmh | ${(res.wind.speed*2.2369).toFixed(2)} mph, ${res.wind.deg}°`, false)
                 .setFooter(`Requested by ${message.author.tag} | Powered by OpenWeather`, message.author.avatarURL({ dynamic: true }))
                 .setTimestamp();
 
