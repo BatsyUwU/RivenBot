@@ -29,6 +29,25 @@ module.exports = {
                 return Errors.resStatus("401", message, "Invalid API Key!");
             };
 
+            var compass;
+            if (res.wind.deg > 39.37 && res.wind.deg < 84.37 ) {
+                compass = "North East";
+            } else if (res.wind.deg > 84.37 && res.wind.deg < 129.37 ) {
+                compass = "East";
+            } else if (res.wind.deg > 129.37 && res.wind.deg < 174.37 ) {
+                compass = "South East";
+            } else if (res.wind.deg > 174.37 && res.wind.deg < 219.37 ) {
+                compass = "South";
+            } else if (res.wind.deg > 219.37 && res.wind.deg < 264.37 ) {
+                compass = "South West";
+            } else if (res.wind.deg > 264.37 && res.wind.deg < 309.37 ) {
+                compass = "West";
+            } else if (res.wind.deg > 309.37 && res.wind.deg < 354.37 ) {
+                compass = "North West";
+            } else {
+                compass = "North";
+            };
+
             var tempColors;
             if (res.main.temp < 0) {
                 tempColors = "#CCF3FF";
@@ -69,7 +88,7 @@ module.exports = {
                 .addField("Clouds", `${res.clouds.all}%`, true)
                 .addField("Pressure", `${res.main.pressure} hpa`, true)
                 .addField("Latitude | Longitude", `${res.coord.lat} | ${res.coord.lon}`, true)
-                .addField("Wind Speed", `${(res.wind.speed*3.6).toFixed(2)} kmh | ${(res.wind.speed*2.2369).toFixed(2)} mph, ${res.wind.deg}°`, false)
+                .addField("Wind Speed", `${(res.wind.speed*3.6).toFixed(2)} kmh | ${(res.wind.speed*2.2369).toFixed(2)} mph, ${compass} (${res.wind.deg}°) `, false)
                 .setFooter(`Requested by ${message.author.tag} | Powered by OpenWeather`, message.author.avatarURL({ dynamic: true }))
                 .setTimestamp();
 
