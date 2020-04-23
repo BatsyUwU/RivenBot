@@ -1,31 +1,31 @@
 const { MessageEmbed } = require("discord.js");
-const { Colors } = require("../../../utils/configs/settings");
+const { Client, Colors } = require("../../../utils/configs/settings");
 const { stripIndents } = require("common-tags");
 const Errors = require("../../../utils/functions/errors");
-const Languages = require("../../../assets/json/translate.json");
+const Languages = require("../../../assets/json/translate");
 const translate = require("@vitalets/google-translate-api");
 
 module.exports = {
     config: {
         name: "translate",
-        aliases: ["tr", "translator","trans","translat"],
+        aliases: ["tl", "trans"],
         category: "utilities",
-        description: "Translates a text.",
+        description: "Translates your text into the desired language!",
         usage: "<from-language> <to-language> <text>",
-        example: "english indonesian Hello World",
+        example: "en id Hello World",
         accessableby: "Members"
     },
     run: async (bot, message, args) => {
-        if (message.deletable) {
-            message.delete()
-        };
-        
         if (args[0] === "lang") {
+            if (message.deletable) {
+                message.delete()
+            };
+            
             const langEmbed = new MessageEmbed()
                 .setColor(Colors.G_TRANSLATE)
                 .setAuthor("Google Translate Engine", "https://cdn.discordapp.com/attachments/646882466333851672/702744617468035112/translate-round.png", "https://translate.google.com/")
                 .setTitle("Available Languages")
-                .setDescription(`\`${Languages.join((", "))}\``)
+                .setDescription(`\`\`\`JSON\n${JSON.stringify(Languages).split(',').join(',\n')}\`\`\``)
                 .setFooter(`Requested by ${message.author.tag} | Powered by Google Translate`, message.author.avatarURL({ dynamic: true }))
                 .setTimestamp();
 
@@ -36,31 +36,32 @@ module.exports = {
             var fromArg = args[0].toLowerCase();
             var toArg = args[1].toLowerCase();
             
+            if (!Languages.hasOwnProperty(fromArg) || !Languages.hasOwnProperty(toArg)) {
+                return Errors.wrongText(message, `Language not found. Check here to see the list of available languages \`${Client.PREFIX}translate lang\``);
+            };
+
             var text = args.join(" ").split(args[0]).pop().split(args[1])[1].trim();
-            if (!text) return Errors.wrongText(message, "Please provide a text for me to translate.")
-            
-            if (!Languages.includes(fromArg)) {
-                return Errors.wrongText(message, "Please provide a language for me to translate from.");
-            }
-            if (!Languages.includes(toArg)) {
-                return Errors.wrongText(message, "Please provide a language for me to translate into.");
-            }
+            if (!text) return Errors.wrongText(message, "Please provide a text for me to translate.");
+
+            if (text.length > 2800) {
+                return Errors.wrongText(message, "Unfortunately, the specified text is too long. Please try again with something a little shorter.");
+            };
             
             translate(text.toLowerCase(), {from: fromArg, to: toArg}).then((res) => {
-                const embed = new MessageEmbed()
+                const tranlateEmbed = new MessageEmbed()
                     .setColor(Colors.G_TRANSLATE)
                     .setAuthor("Google Translate Engine", "https://cdn.discordapp.com/attachments/646882466333851672/702744617468035112/translate-round.png", "https://translate.google.com/")
                     .setDescription(stripIndents`
-                    From **${fromArg[0].toUpperCase()}${fromArg.slice(1)}:**
+                    From **${Languages[fromArg]}:**
                     ${text}\n
-                    To **${toArg[0].toUpperCase()}${toArg.slice(1)}:**
+                    To **${Languages[toArg]}:**
                     ${res.text}`)
                     .setFooter(`Requested by ${message.author.tag} | Powered by Google Translate`, message.author.avatarURL({ dynamic: true }))
                     .setTimestamp();
                     
-                return message.channel.send(embed);
+                return message.channel.send(tranlateEmbed);
             })
             .catch((err) => console.log(err));
-        }
+        };
     }
 };
