@@ -52,7 +52,7 @@ module.exports = {
             .setThumbnail(message.guild.iconURL({ format: "png", dynamic: true, size: 4096 }))
             .addField("❯ Details", stripIndents`
                 • **ID:** ${message.guild.id}
-                • **Created:** ${moment(message.guild.createdAt).format("ddd, DD MMMM YYYY HH:mm")}
+                • **Created:** ${moment(message.guild.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}
                 • **Owner:** ${message.guild.owner.user.tag}
                 • **Region:** ${region[message.guild.region]}
                 • **Verification:** ${verificationLevels[message.guild.verificationLevel]}`)

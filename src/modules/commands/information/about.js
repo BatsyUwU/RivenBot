@@ -38,7 +38,7 @@ module.exports = {
             **❯ Version:** v${version}
             **❯ Node:** [${process.version}](https://nodejs.org/)
             **❯ Library:** [Discord.js v${discordVersion}](https://discord.js.org/)
-            **❯ Discord Join Date:** ${moment(bot.user.createdAt).format("ddd, DD MMMM YYYY HH:mm")}`)
+            **❯ Discord Join Date:** ${moment(bot.user.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`)
             .addField("Statistics", stripIndents`**❯ Guild Count:** ${bot.guilds.cache.size}
             **❯ Member Count:** ${bot.users.cache.size}
             **❯ Channels Count:** ${bot.channels.cache.size}
