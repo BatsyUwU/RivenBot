@@ -2,6 +2,8 @@ const { MessageEmbed } = require("discord.js");
 const { Access } = require("../../../utils/configs/settings");
 const Errors = require("../../../utils/functions/errors");
 const weather = require("openweather-apis");
+const moment = require("moment-timezone");
+const geotz = require("geo-tz");
 
 module.exports = {
     config: {
@@ -14,7 +16,7 @@ module.exports = {
         accessableby: "Members"
     },
     run: async (bot, message, args) => {
-        let city = args.join(" ");
+        let city = args.join("").toLowerCase();
         if (!city) return Errors.wrongText(message, "Please provide me a city to search up!");
         
         weather.setAPPID(Access.OPENWEATHER_KEY);
@@ -73,6 +75,11 @@ module.exports = {
                 tempColors = "#74CDFF"
             };
 
+            const city_tz = geotz(res.coord.lat, res.coord.lon);
+
+            const dawn_time = res.sys.sunrise * 1000;
+            const dusk_time = res.sys.sunset * 1000;
+
             const weatherEmbed = new MessageEmbed()
                 .setColor(tempColors)
                 .setAuthor("Today's weather",  "https://cdn1.iconfinder.com/data/icons/weather-429/64/weather_icons_color-06-512.png")
@@ -87,6 +94,9 @@ module.exports = {
                 .addField("☁️ Pressure", `${res.main.pressure} hPA`, true)
                 .addField("📏 Latitude | Longitude", `${res.coord.lat} | ${res.coord.lon}`, true)
                 .addField("🌬️ Wind Speed", `${(res.wind.speed*3.6).toFixed(2)} km/h | ${(res.wind.speed*2.2369).toFixed(2)} mph, ${compass} (${res.wind.deg}°) `, false)
+                .addField("🌅 Sunrise", `${moment(dawn_time).tz(`${city_tz}`).format("HH:mm [GMT]Z")}`, true)
+                .addField("🌇 Sunset", `${moment(dusk_time).tz(`${city_tz}`).format("HH:mm [GMT]Z")}`, true)
+                .addField("⌚ Current Time", `${moment().tz(`${city_tz}`).format("HH:mm [GMT]Z")}`, true)
                 .setFooter(`Requested by ${message.author.tag} | Powered by OpenWeatherMap`, message.author.avatarURL({ dynamic: true }))
                 .setTimestamp();
 
