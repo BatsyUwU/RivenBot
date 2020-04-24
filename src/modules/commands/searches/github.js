@@ -1,25 +1,28 @@
-const { MessageEmbed } = require('discord.js');
+const { MessageEmbed } = require("discord.js");
 const { Colors } = require("../../../utils/configs/settings");
-const fetch = require('node-fetch');
+const Errors = require("../../../utils/functions/errors");
+const fetch = require("node-fetch");
 const moment = require("moment");
 
 module.exports = {
     config: {
-        name: 'github',
-        aliases: ['git'],
-        category: 'searches',
-        description: 'Searches github for a user, organisation or repository',
-        usage: '<users/repos> <username> <repository>',
-        example: 'repos XRzky AkiraBot',
-        accessableby: 'Members'
+        name: "github",
+        aliases: ["git"],
+        category: "searches",
+        description: "Searches github for a user, organisation or repository",
+        usage: "<users/repos> <username> <repository>",
+        example: "repos XRzky AkiraBot",
+        accessableby: "Members"
     },
     run: async (bot, message, args) => {
+        if (!args[0]) return Errors.wrongCmd(message, "github");
+        
         if (args[0] === "users") {
             let username = args[1];
-            if(!username) return message.channel.send("Please provide a valid github account to search.");
+            if(!username) return Errors.wrongText(message, "Please provide a valid github account to search.");
             
             fetch(`https://api.github.com/users/${username}`).then(res => res.json()).then(users => {
-                if(users.message) return message.channel.send(`I wasnt able to find \`${username}\` on the github website!`);
+                if(users.message) return Errors.resStatus("404", message, `I wasnt able to find \`${username}\` on the github website!`);
 
                 const usersEmbed = new MessageEmbed()
                     .setColor(Colors.GITHUB)
@@ -43,13 +46,13 @@ module.exports = {
             });
         } else if (args[0] === "repos") {
             let user = args[1];
-            if (!user) return message.channel.send ("Please provide the repository owner's username or organisation name.");
+            if (!user) return Errors.wrongText(message, "Please provide the repository owner's username or organisation name.");
 
             let repo = args[2];
-            if (!repo) return message.channel.send ("Please provide a repository name to search for.");
+            if (!repo) return Errors.wrongText(message, "Please provide a repository name to search for.");
 
             fetch(`https://api.github.com/repos/${user}/${repo}`).then(res => res.json()).then(repos => {
-                if(repos.message) return message.channel.send(`I wasnt able to find \`${user}/${repo}\` on the github website!`);
+                if(repos.message) return Errors.resStatus("404", message, `I wasnt able to find \`${user}/${repo}\` on the github website!`);
 
                 const reposEmbed = new MessageEmbed()
                     .setColor(Colors.GITHUB)
