@@ -70,6 +70,7 @@ You can find all settings in the **settings.js** file, without filling in all th
 | `OWNER_ID`           | Your discord id               | 4275XXXXXX   |
 | `PREFIX`             | Prefix to use before commands | ?            |
 | `TZ`                 | Localhost timezone            | Asia/Jakarta |
+| `YOUTUBE_API_KEY`    | Input your YouTube API        | AIzaXXXXXX   |
 
 ## Contributing
 If you want to contribute to this project you can follow the steps below.

@@ -1,7 +1,8 @@
 module.exports = {
     Access: {
         "OWNERS": `${process.env.OWNER_ID}`,
-        "OPENWEATHER_KEY": `${process.env.OPEN_WEATHER_APPID}`
+        "OPENWEATHER_KEY": `${process.env.OPEN_WEATHER_APPID}`,
+        'YOUTUBE': `${process.env.YOUTUBE_API_KEY}`
     },
     Action: {
         "JOIN": `${process.env.CHANNEL_JOIN}`,
@@ -38,6 +39,7 @@ module.exports = {
         "CUSTOM": "2b2c36",
         "G_TRANSLATE": "4989f4",
         "GITHUB": "282828",
+        "YOUTUBE": "c4302b",
         "WIKIPEDIA": "6b6b6b"
     },
     Emotes: {
