@@ -44,7 +44,7 @@ module.exports = {
             .setDescription(stripIndents`**Kicked By:** ${message.author.tag} (${message.author.id})
             **Kicked User:** ${kickMember.user.tag} (${kickMember.user.id})
             **Reason:** ${kickReason}
-            **Date & Time:** ${moment(message.createdAt).format("ddd, DD MMMM YYYY HH:mm")}`)
+            **Date & Time:** ${moment(message.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`)
             .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.avatarURL({ dynamic: true }))
             .setTimestamp();
     

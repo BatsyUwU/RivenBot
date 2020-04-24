@@ -62,7 +62,7 @@ module.exports = {
             .setDescription(stripIndents`**Muted By:** ${message.author.tag} (${message.author.id})
             **Muted User:** ${muteMember.user.tag} (${muteMember.user.id})
             **Reason:** ${muteReason}
-            **Date & Time:** ${moment(message.createdAt).format("ddd, DD MMMM YYYY HH:mm")}`)
+            **Date & Time:** ${moment(message.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`)
             .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.avatarURL({ dynamic: true }))
             .setTimestamp();
     

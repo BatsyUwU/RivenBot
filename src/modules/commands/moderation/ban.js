@@ -42,7 +42,7 @@ module.exports = {
             .setDescription(stripIndents`**Banned By:** ${message.author.tag} (${message.author.id})
             **Banned User:** ${banMember.user.tag} (${banMember.user.id})
             **Reason:** ${banReason}
-            **Date & Time:** ${moment(message.createdAt).format("ddd, DD MMMM YYYY HH:mm")}`)
+            **Date & Time:** ${moment(message.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`)
             .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.avatarURL({ dynamic: true }))
             .setTimestamp();
     
