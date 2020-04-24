@@ -7,7 +7,7 @@ module.exports = {
     config: {
         name: "wikipedia",
         aliases: ["wiki"],
-        category: "search",
+        category: "searches",
         description: "Searches Wikipedia Article use title",
         usage: "<query>",
         example: "Google",
