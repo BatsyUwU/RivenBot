@@ -42,6 +42,8 @@ module.exports = {
         const statsEmbed = new MessageEmbed()
             .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
             .setAuthor(`${bot.user.username}'s statistics information`, bot.user.avatarURL({ dynamic: true }))
+            .setDescription("Here are some stats about the bot and other stuff")
+            .setThumbnail(bot.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
             .addField(`Used`, stripIndents`
                 RAM: ${diagramMaker(usedRAM, freeRAM)} [${Math.round(100 * usedRAM / (usedRAM + freeRAM))}%]
                 CPU: ${diagramMaker(cpuUsage, 100-cpuUsage)} [${Math.round(cpuUsage)}%]`)
@@ -55,7 +57,7 @@ module.exports = {
                 Bot: ${moment.duration(bot.uptime).format("D [days], H [hrs], m [mins], s [secs]")}
                 Host: ${moment.duration(os.uptime*1000).format("D [days], H [hrs], m [mins], s [secs]")}
                 Proccess: ${moment.duration(process.uptime()*1000).format("D [days], H [hrs], m [mins], s [secs]")}`)
-            .setFooter(`Last started on ${moment(bot.readyAt).format("ddd, DD MMMM YYYY HH:mm")}`);
+            .setFooter(`Requested by ${message.author.tag} | Powered by Heroku | Last started on ${moment(bot.readyAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`, message.author.avatarURL({ dynamic: true }));
 
         message.channel.send(statsEmbed);
     }
