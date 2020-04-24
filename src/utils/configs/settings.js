@@ -37,7 +37,8 @@ module.exports = {
         "DARK_VIVID_PINK": "bc0057",
         "CUSTOM": "2b2c36",
         "G_TRANSLATE": "4989f4",
-        "GITHUB": "282828"
+        "GITHUB": "282828",
+        "WIKIPEDIA": "6b6b6b"
     },
     Emotes: {
         "ONLINE": "<:online:702005110636806275>",
