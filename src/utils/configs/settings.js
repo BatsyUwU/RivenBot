@@ -39,6 +39,7 @@ module.exports = {
         "CUSTOM": "2b2c36",
         "G_TRANSLATE": "4989f4",
         "GITHUB": "282828",
+        "INSTAGRAM": "e1306c",
         "YOUTUBE": "c4302b",
         "WIKIPEDIA": "6b6b6b"
     },
