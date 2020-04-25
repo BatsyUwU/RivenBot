@@ -16,27 +16,31 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         if (message.deletable) {
-            message.delete()
-        };
+            message.delete();
+        }
         
-        if(!message.member.hasPermission(["KICK_MEMBERS" || "ADMINISTRATOR"])) 
+        if(!message.member.hasPermission(["KICK_MEMBERS" || "ADMINISTRATOR"])) {
             return Errors.userPerms(message, "Kick Members");
+        };
 
         let kickMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        if(!kickMember) 
+        if(!kickMember) {
             return Errors.wrongText(message, "Please provide a user to kick!");
+        };
     
         let kickReason = args.slice(1).join(" ");
-        if(!kickReason) 
+        if(!kickReason) {
             return Errors.wrongText(message, "You must specify a reason for the kick!");
+        };
     
-        if(!message.guild.me.hasPermission(["KICK_MEMBERS" || "ADMINISTRATOR"])) 
+        if(!message.guild.me.hasPermission(["KICK_MEMBERS" || "ADMINISTRATOR"])) {
             return Errors.botPerms(message, "Kick Members");
+        };
     
         kickMember.send(`Hello, you have been kicked from **${message.guild.name}**\nReason: ${kickReason}`).then(() => 
-        kickMember.kick()).catch(err => console.log(err));
+        kickMember.kick()).catch((err) => console.log(err));
 
-        message.channel.send(`**${kickMember.user.tag}**, has been kicked`).then(m => m.delete({ timeout: 5000 }));
+        message.channel.send(`**${kickMember.user.tag}**, has been kicked`).then((m) => m.delete({ timeout: 5000 }));
     
         let kickEmbed = new MessageEmbed()
             .setColor(Colors.ORANGE)
@@ -48,7 +52,7 @@ module.exports = {
             .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.avatarURL({ dynamic: true }))
             .setTimestamp();
     
-        let sendChannel = message.guild.channels.cache.find(c => c.name === Action.INCIDENT);
+        let sendChannel = message.guild.channels.cache.find((c) => c.name === Action.INCIDENT);
         sendChannel.send(kickEmbed);
     }
 };

@@ -25,14 +25,14 @@ module.exports = {
             const categories = readdirSync("./src/modules/commands/");
 
             embed.setDescription(`These are the avaliable commands for ${bot.user.username}.\nThe bot prefix is: **${Client.PREFIX}**`);
-            embed.setFooter(`Based on ${bot.user.username} | Total Commands: ${bot.commands.size}`, bot.user.displayAvatarURL({ dynamic: true }))
+            embed.setFooter(`Based on ${bot.user.username} | Total Commands: ${bot.commands.size}`, bot.user.displayAvatarURL({ dynamic: true }));
             embed.setTimestamp();
 
-            categories.forEach(category => {
-                const dir = bot.commands.filter(c => c.config.category === category);
+            categories.forEach((category) => {
+                const dir = bot.commands.filter((c) => c.config.category === category);
                 const capitalise = category.slice(0, 1).toUpperCase() + category.slice(1);
                 try {
-                    embed.addField(`❯ ${capitalise} [${dir.size}]:`, dir.map(c => `\`${c.config.name}\``).join(" | "));
+                    embed.addField(`❯ ${capitalise} [${dir.size}]:`, dir.map((c) => `\`${c.config.name}\``).join(" | "));
                 } catch(e) {
                     console.log(e);
                 };
@@ -41,7 +41,9 @@ module.exports = {
             return message.channel.send(embed);
         } else {
             let command = bot.commands.get(bot.aliases.get(args[0].toLowerCase()) || args[0].toLowerCase());
-            if(!command) return message.channel.send(embed.setTitle("Invalid Command.").setDescription(`Do \`${Client.PREFIX}help\` for the list of the commands.`));
+            if(!command) {
+                return message.channel.send(embed.setTitle("Invalid Command.").setDescription(`Do \`${Client.PREFIX}help\` for the list of the commands.`));
+            };
             command = command.config;
 
             embed.setDescription(stripIndents` The bot's prefix is: \`${Client.PREFIX}\`\n
@@ -52,10 +54,10 @@ module.exports = {
             **Usage:** ${command.usage ? `\`${Client.PREFIX}${command.name} ${command.usage}\`` : `\`${Client.PREFIX}${command.name}\``}
             **Example:** ${command.example ? `\`${Client.PREFIX}${command.name} ${command.example}\`` : "None."}
             **Accessible by:** ${command.accessableby || "Members"}`);
-            embed.setFooter(`Syntax: <> = required, [] = optional`)
+            embed.setFooter("Syntax: <> = required, [] = optional");
             embed.setTimestamp();
 
             return message.channel.send(embed);
-        };
+        }
     }
 };

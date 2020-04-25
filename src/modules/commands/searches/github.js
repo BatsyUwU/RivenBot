@@ -15,14 +15,20 @@ module.exports = {
         accessableby: "Members"
     },
     run: async (bot, message, args) => {
-        if (!args[0]) return Errors.wrongCmd(message, "github");
+        if (!args[0]) {
+            return Errors.wrongCmd(message, "github");
+        };
         
         if (args[0] === "users") {
             let username = args[1];
-            if(!username) return Errors.wrongText(message, "Please provide a valid github account to search.");
+            if(!username) {
+                return Errors.wrongText(message, "Please provide a valid github account to search.");
+            };
             
-            fetch(`https://api.github.com/users/${username}`).then(res => res.json()).then(users => {
-                if(users.message) return Errors.resStatus("404", message, `I wasnt able to find \`${username}\` on the github website!`);
+            fetch(`https://api.github.com/users/${username}`).then((res) => res.json()).then((users) => {
+                if(users.message) {
+                    return Errors.resStatus("404", message, `I wasnt able to find \`${username}\` on the github website!`);
+                }
 
                 const usersEmbed = new MessageEmbed()
                     .setColor(Colors.GITHUB)
@@ -46,13 +52,19 @@ module.exports = {
             });
         } else if (args[0] === "repos") {
             let user = args[1];
-            if (!user) return Errors.wrongText(message, "Please provide the repository owner's username or organisation name.");
+            if (!user) {
+                return Errors.wrongText(message, "Please provide the repository owner's username or organisation name.");
+            };
 
             let repo = args[2];
-            if (!repo) return Errors.wrongText(message, "Please provide a repository name to search for.");
+            if (!repo) {
+                return Errors.wrongText(message, "Please provide a repository name to search for.");
+            };
 
-            fetch(`https://api.github.com/repos/${user}/${repo}`).then(res => res.json()).then(repos => {
-                if(repos.message) return Errors.resStatus("404", message, `I wasnt able to find \`${user}/${repo}\` on the github website!`);
+            fetch(`https://api.github.com/repos/${user}/${repo}`).then((res) => res.json()).then((repos) => {
+                if(repos.message) {
+                    return Errors.resStatus("404", message, `I wasnt able to find \`${user}/${repo}\` on the github website!`);
+                }
 
                 const reposEmbed = new MessageEmbed()
                     .setColor(Colors.GITHUB)
@@ -75,6 +87,6 @@ module.exports = {
 
                 message.channel.send(reposEmbed);
             });
-        };
+        }
     }
 };

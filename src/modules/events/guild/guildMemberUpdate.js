@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { Action, Colors } = require("../../../utils/configs/settings");
 
 module.exports = async (bot, oldMember, newMember) => {
-    const sendChannel = newMember.guild.channels.cache.find(channel => channel.name === `${Action.INCIDENT}`);
+    const sendChannel = newMember.guild.channels.cache.find((ch) => ch.name === `${Action.INCIDENT}`);
 
     if (oldMember.nickname !== newMember.nickname) {
         const nicknameEmbed = new MessageEmbed()
@@ -19,8 +19,10 @@ module.exports = async (bot, oldMember, newMember) => {
     };
 
     if (oldMember.roles !== newMember.roles) {
-        let addedRole = newMember.roles.cache.filter(role => !oldMember.roles.cache.has(role.id));
-        if (!addedRole.first()) return;
+        let addedRole = newMember.roles.cache.filter((role) => !oldMember.roles.cache.has(role.id));
+        if (!addedRole.first()) {
+            return;
+        };
 
         const rolesAddEmbed = new MessageEmbed()
             .setColor(Colors.GREEN)
@@ -32,5 +34,5 @@ module.exports = async (bot, oldMember, newMember) => {
             .setTimestamp();
 
         sendChannel.send(rolesAddEmbed);
-    };
+    }
 };

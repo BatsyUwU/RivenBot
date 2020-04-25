@@ -15,8 +15,8 @@ module.exports = {
         const ping = Math.round(msg.createdTimestamp - message.createdTimestamp);
     
         if (ping <= 0) {
-            return msg.edit("Please try again...")
-        };
+            return msg.edit("Please try again...");
+        }
         
         return msg.edit(
             stripIndents`

@@ -17,17 +17,22 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         let city = args.join("").toLowerCase();
-        if (!city) return Errors.wrongText(message, "Please provide me a city to search up!");
+        if (!city) {
+            return Errors.wrongText(message, "Please provide me a city to search up!");
+        };
         
         weather.setAPPID(Access.OPENWEATHER_KEY);
         weather.setLang("en");
         weather.setUnits("metric");
         weather.setCity(city);
         weather.getAllWeather( function (err, res) {
-            if (err) return message.channel.send("An Error Has occured, Try again later.");
-            if (res.cod == "404" || !res.sys.country) {
+            if (err) { 
+                return message.channel.send("An Error Has occured, Try again later.");
+            };
+
+            if (res.cod === "404" || !res.sys.country) {
                 return Errors.resStatus("404", message, "Couldn't Find That Location!");
-            } else if (res.cod == "401") {
+            } else if (res.cod === "401") {
                 return Errors.resStatus("401", message, "Invalid API Key!");
             };
 
@@ -58,27 +63,27 @@ module.exports = {
             } else if (res.main.temp < 10) {
                 tempColors = "#B4FF92";
             } else if (res.main.temp < 15) {
-                tempColors = "#8CF974"
+                tempColors = "#8CF974";
             } else if (res.main.temp < 20) {
-                tempColors = "#ECFF7A"
+                tempColors = "#ECFF7A";
             } else if (res.main.temp < 25) {
-                tempColors = "#FFC97A"
+                tempColors = "#FFC97A";
             } else if (res.main.temp < 30) {
-                tempColors = "#FF6E46"
+                tempColors = "#FF6E46";
             } else if (res.main.temp < 35) {
-                tempColors = "#FF4B22"
+                tempColors = "#FF4B22";
             } else if (res.main.temp < 40) {
-                tempColors = "#FF3C22"
+                tempColors = "#FF3C22";
             } else if (res.main.temp > 40) {
-                tempColors = "#BD0000"
+                tempColors = "#BD0000";
             } else {
-                tempColors = "#74CDFF"
-            };
+                tempColors = "#74CDFF";
+            }
 
-            const city_tz = geotz(res.coord.lat, res.coord.lon);
+            let city_tz = geotz(res.coord.lat, res.coord.lon);
 
-            const dawn_time = res.sys.sunrise * 1000;
-            const dusk_time = res.sys.sunset * 1000;
+            let dawn_time = res.sys.sunrise * 1000;
+            let dusk_time = res.sys.sunset * 1000;
 
             const weatherEmbed = new MessageEmbed()
                 .setColor(tempColors)

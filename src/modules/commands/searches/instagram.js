@@ -16,14 +16,17 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         const name = args.join(" ");
-        if (!name) return Errors.wrongText(message, "Maybe it's useful to actually search for someone...!");
+        if (!name) {
+            return Errors.wrongText(message, "Maybe it's useful to actually search for someone...!");
+        };
 
         let ig;
         try {
-            ig = await fetch(`https://instagram.com/${name}/?__a=1`).then(res => res.json());
+            ig = await fetch(`https://instagram.com/${name}/?__a=1`).then((res) => res.json());
         } catch (e) {
             return Errors.resStatus("404", message, "I couldn't find that account... :(");
-        };
+        }
+
         const account = ig.graphql.user;
         
         const instagramEmbed = new MessageEmbed()
@@ -33,7 +36,7 @@ module.exports = {
             .setURL(`https://instagram.com/${name}`)
             .setThumbnail(account.profile_pic_url_hd)
             .setDescription(stripIndents`
-                ${account.biography.length == 0 ? "None" : account.biography}
+                ${account.biography.length === 0 ? "None" : account.biography}
                 ${account.external_url || ""}`)
             .addField("Username", `@${account.username}`, true)
             .addField("Verified", account.is_verified ? "Yes" : "No", true)

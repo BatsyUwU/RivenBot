@@ -16,25 +16,35 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         if (message.deletable) {
-            message.delete()
-        };
+            message.delete();
+        }
         
-        if(!message.member.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) return Errors.userPerms(message, "Manage Roles");
+        if(!message.member.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) {
+            return Errors.userPerms(message, "Manage Roles");
+        };
 
-        if(!message.guild.me.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) return Errors.botPerms(message, "Manage Roles");
+        if(!message.guild.me.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) {
+            return Errors.botPerms(message, "Manage Roles");
+        };
     
         let muteMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        if(!muteMember) return Errors.wrongText(message, "You must mention a user to unmute.");
+        if(!muteMember) {
+            return Errors.wrongText(message, "You must mention a user to unmute.");
+        };
     
         let muteReason = args.slice(1).join(" ");
-        if(!muteReason) return Errors.wrongText(message, "Please enter a reason for unmuting this user...");
+        if(!muteReason) {
+            return Errors.wrongText(message, "Please enter a reason for unmuting this user...");
+        }
     
-        let muteRole = message.guild.roles.cache.find(r => r.name === "Muted");
-        if(!muteRole) return message.channel.send("The mentioned user isn't muted, so I cannot unmute them.").then(m => m.delete({ timeout: 5000 }));
+        let muteRole = message.guild.roles.cache.find((r) => r.name === "Muted");
+        if(!muteRole) {
+            return message.channel.send("The mentioned user isn't muted, so I cannot unmute them.").then((m) => m.delete({ timeout: 5000 }));
+        };
     
         muteMember.roles.remove(muteRole.id).then(() => {
-            muteMember.send(`Hello, you have been unmuted in **${message.guild.name}**\nReason: ${muteReason}`).catch(err => console.log(err));
-            message.channel.send(`**${muteMember.user.username}**, was unmuted!`).then(m => m.delete({ timeout: 5000 }));
+            muteMember.send(`Hello, you have been unmuted in **${message.guild.name}**\nReason: ${muteReason}`).catch((err) => console.log(err));
+            message.channel.send(`**${muteMember.user.username}**, was unmuted!`).then((m) => m.delete({ timeout: 5000 }));
         });
     
         let muteEmbed = new MessageEmbed()
@@ -47,7 +57,7 @@ module.exports = {
             .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.avatarURL({ dynamic: true }))
             .setTimestamp();
     
-        let sendChannel = message.guild.channels.cache.find(c => c.name === Action.INCIDENT);
+        let sendChannel = message.guild.channels.cache.find((c) => c.name === Action.INCIDENT);
         sendChannel.send(muteEmbed);
     }
 };

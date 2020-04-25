@@ -24,7 +24,7 @@ module.exports = {
             "offline": `${Emotes.OFFLINE} Offline`
         };
 
-        const roles = member.roles.cache.sort((a, b) => b.position - a.position).filter(r => r.id !== message.guild.id).map(r => r.name).join(", ") || "None";
+        const roles = member.roles.cache.sort((a, b) => b.position - a.position).filter((r) => r.id !== message.guild.id).map((r) => r.name).join(", ") || "None";
 
         const userEmbed = new MessageEmbed()
             .setColor(member.displayHexColor === "#000000" ? Colors.CUSTOM : member.displayHexColor)
@@ -39,7 +39,7 @@ module.exports = {
             .addField("❯ Join Dates", stripIndents`
                 • **Server:** ${moment(member.joinedAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}
                 • **Discord:** ${moment(member.user.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`)
-            .addField(`❯ Roles [${member.roles.cache.filter(f => f.name !== "@everyone").size}]`, stripIndents`
+            .addField(`❯ Roles [${member.roles.cache.filter((f) => f.name !== "@everyone").size}]`, stripIndents`
                 • **Highest:** ${member.roles.highest.name}
                 • **List:** ${roles}`)
             .setFooter(`Requested by ${message.author.tag}`, message.author.avatarURL({ dynamic: true }))

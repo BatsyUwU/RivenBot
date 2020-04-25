@@ -15,10 +15,14 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         let query = args.join(" ");
-        if(!query) return Errors.wrongText(message, "Please provide query to search on Wikipedia");
+        if(!query) {
+            return Errors.wrongText(message, "Please provide query to search on Wikipedia");
+        };
 
-        fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`).then(response => response.json()).then(article => {
-            if(!article.content_urls) return Errors.resStatus("404", message, "I couldn't find a wikipedia article with that title!");
+        fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`).then((res) => res.json()).then((article) => {
+            if(!article.content_urls) {
+                return Errors.resStatus("404", message, "I couldn't find a wikipedia article with that title!");
+            }
 
             const articleEmbed = new MessageEmbed()
                 .setColor(Colors.WIKIPEDIA)

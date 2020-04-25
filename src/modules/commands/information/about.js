@@ -27,7 +27,7 @@ module.exports = {
         const roleColor = message.guild.me.roles.highest.hexColor;
 
         const aboutEmbed = new MessageEmbed()
-            .setColor(roleColor === '#000000' ? Colors.CUSTOM : roleColor)
+            .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
             .setTitle(`__Information About ${bot.user.username}__`)
             .setDescription(`Hiya, I'm ${bot.user.username}... I'll be your server assistant & multipurpose bot!\nYou can use \`${Client.PREFIX}help\` to get all my commands.`)
             .setThumbnail(bot.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))

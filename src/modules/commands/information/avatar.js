@@ -19,7 +19,7 @@ module.exports = {
         const roleColor = message.guild.me.roles.highest.hexColor;
         
         let avatarEmbed = new MessageEmbed()
-            .setColor(roleColor === '#000000' ? Colors.CUSTOM : roleColor)
+            .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
             .setTitle(`🖼️ ${target.tag}'s avatar`)
             .setDescription(`🔗 **[HD Resolution](${target.displayAvatarURL({ format: "png", dynamic: true, size: 4096 })})**`)
             .setImage(target.displayAvatarURL({ format: "png", dynamic: true, size: 512 }))

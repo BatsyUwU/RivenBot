@@ -57,20 +57,20 @@ module.exports = {
                 • **Region:** ${region[message.guild.region]}
                 • **Verification:** ${verificationLevels[message.guild.verificationLevel]}`)
             .addField("❯ Channels", stripIndents`
-                • **Categories:** ${message.guild.channels.cache.filter(ch => ch.type === "category").size}
-                • **Text:** ${message.guild.channels.cache.filter(ch => ch.type === "text").size}
-                • **Voice:** ${message.guild.channels.cache.filter(ch => ch.type === "voice").size}
+                • **Categories:** ${message.guild.channels.cache.filter((ch) => ch.type === "category").size}
+                • **Text:** ${message.guild.channels.cache.filter((ch) => ch.type === "text").size}
+                • **Voice:** ${message.guild.channels.cache.filter((ch) => ch.type === "voice").size}
                 • **AFK:** ${message.guild.afkChannel ? message.guild.afkChannel.name : "None"}`, true)
             .addField("❯ Users", stripIndents`
-                • **Humans:** ${message.guild.memberCount - message.guild.members.cache.filter(m => m.user.bot).size}
-                • **Bots:** ${message.guild.members.cache.filter(m => m.user.bot).size}
+                • **Humans:** ${message.guild.memberCount - message.guild.members.cache.filter((m) => m.user.bot).size}
+                • **Bots:** ${message.guild.members.cache.filter((m) => m.user.bot).size}
                 • **Members:** ${message.guild.memberCount}`, true)
             .addField("❯ Other", stripIndents`
                 • **AFK:** After ${message.guild.afkTimeout / 60} min
                 • **Large?** ${message.guild.large.toString()}
                 • **Content filter:** ${contentFilterLevels[message.guild.explicitContentFilter]}`, true)
-            .addField(`❯ Roles [${message.guild.roles.cache.filter(f => f.name !== '@everyone').size}]`, stripIndents`
-                • **List:** ${message.guild.roles.cache.sort((a, b) => b.position - a.position).filter(f => f.name !== "@everyone").map(r => r.name).join(", ")}`)
+            .addField(`❯ Roles [${message.guild.roles.cache.filter((f) => f.name !== "@everyone").size}]`, stripIndents`
+                • **List:** ${message.guild.roles.cache.sort((a, b) => b.position - a.position).filter((f) => f.name !== "@everyone").map((r) => r.name).join(", ")}`)
             .setFooter(`Requested by ${message.author.tag}`, message.author.avatarURL({ dynamic: true }))
             .setTimestamp();
 

@@ -13,16 +13,18 @@ module.exports = {
     },
     run: async (bot, message) => {
         if (message.deletable) {
-            message.delete()
+            message.delete();
         };
 
-        if(message.author.id !== Access.OWNERS) return Errors.ownerAccess(message);
+        if(message.author.id !== Access.OWNERS) {
+            return Errors.ownerAccess(message);
+        };
 
         try{
             await message.channel.send("Rebooting, please wait...");
             process.exit(1);
         } catch(e) {
             message.channel.send(`ERROR: ${e.message}`);
-        };
+        }
     }
 };

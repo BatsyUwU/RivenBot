@@ -9,11 +9,11 @@ module.exports.ownerAccess = (message) => {
         .setFooter(message.author.tag)
         .setTimestamp();
 
-    if (message.author.avatarURL() != null) {
+    if (message.author.avatarURL() !== null) {
         replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
-    };
+    }
 
-    message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 20000 }));
 };
 
 module.exports.userPerms = (message, perm) => {
@@ -24,11 +24,11 @@ module.exports.userPerms = (message, perm) => {
         .setFooter(message.author.tag)
         .setTimestamp();
 
-    if (message.author.avatarURL() != null) {
+    if (message.author.avatarURL() !== null) {
         replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
-    };
+    }
 
-    message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 20000 }));
 };
 
 module.exports.botPerms = (message, perm) => {
@@ -39,11 +39,11 @@ module.exports.botPerms = (message, perm) => {
         .setFooter(message.author.tag)
         .setTimestamp();
 
-    if (message.author.avatarURL() != null) {
+    if (message.author.avatarURL() !== null) {
         replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
-    };
+    }
 
-    message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 20000 }));
 };
 
 module.exports.wrongText = (message, text) => {
@@ -54,11 +54,11 @@ module.exports.wrongText = (message, text) => {
         .setFooter(message.author.tag)
         .setTimestamp();
 
-    if (message.author.avatarURL() != null) {
+    if (message.author.avatarURL() !== null) {
         replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
-    };
+    }
 
-    message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 20000 }));
 };
 
 module.exports.noMention = (message, text) => {
@@ -69,11 +69,11 @@ module.exports.noMention = (message, text) => {
         .setFooter(message.author.tag)
         .setTimestamp();
 
-    if (message.author.avatarURL() != null) {
+    if (message.author.avatarURL() !== null) {
         replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
-    };
+    }
 
-    message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 20000 }));
 };
 
 module.exports.resStatus = (code, message, text) => {
@@ -84,11 +84,11 @@ module.exports.resStatus = (code, message, text) => {
         .setFooter(message.author.tag)
         .setTimestamp();
 
-    if (message.author.avatarURL() != null) {
+    if (message.author.avatarURL() !== null) {
         replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
-    };
+    }
 
-    message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 20000 }));
 };
 
 module.exports.wrongCmd = (message, cmd) => {
@@ -99,9 +99,9 @@ module.exports.wrongCmd = (message, cmd) => {
         .setFooter(message.author.tag)
         .setTimestamp();
 
-    if (message.author.avatarURL() != null) {
+    if (message.author.avatarURL() !== null) {
         replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
-    };
+    }
 
-    message.channel.send(replyEmbed).then(m => m.delete({ timeout: 20000 }));
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 20000 }));
 };

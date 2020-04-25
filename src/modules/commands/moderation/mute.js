@@ -16,20 +16,28 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         if (message.deletable) {
-            message.delete()
+            message.delete();
+        }
+
+        if(!message.member.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) {
+            return Errors.userPerms(message, "Manage Roles");
         };
 
-        if(!message.member.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) return Errors.userPerms(message, "Manage Roles");
-
-        if(!message.guild.me.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) return Errors.botPerms(message, "Manage Roles");
+        if(!message.guild.me.hasPermission(["MANAGE_ROLES" || "ADMINISTRATOR"])) { 
+            return Errors.botPerms(message, "Manage Roles");
+        };
     
         let muteMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        if(!muteMember) return Errors.wrongText(message, "You must mention a user to mute.");
+        if(!muteMember) {
+            return Errors.wrongText(message, "You must mention a user to mute.");
+        };
     
         let muteReason = args.slice(1).join(" ");
-        if(!muteReason) return Errors.wrongText(message, "Please enter a reason for the mute...");
+        if(!muteReason) {
+            return Errors.wrongText(message, "Please enter a reason for the mute...");
+        };
     
-        let muteRole = message.guild.roles.cache.find(r => r.name === "Muted");
+        let muteRole = message.guild.roles.cache.find((r) => r.name === "Muted");
         if(!muteRole) {
             try{
                 muteRole = await message.guild.roles.create({
@@ -49,11 +57,11 @@ module.exports = {
             } catch(e) {
                 console.log(e.stack);
             }
-        };
+        }
 
         muteMember.roles.add(muteRole.id).then(() => {
             muteMember.send(`Hello, you have been muted in **${message.guild.name}**\nReason: ${muteReason}`);
-            message.channel.send(`**${muteMember.user.username}**, was successfully muted.`).then(m => m.delete({ timeout: 5000 }));
+            message.channel.send(`**${muteMember.user.username}**, was successfully muted.`).then((m) => m.delete({ timeout: 5000 }));
         });
     
         let muteEmbed = new MessageEmbed()
@@ -66,7 +74,7 @@ module.exports = {
             .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.avatarURL({ dynamic: true }))
             .setTimestamp();
     
-        let sendChannel = message.guild.channels.cache.find(c => c.name === Action.INCIDENT);
+        let sendChannel = message.guild.channels.cache.find((c) => c.name === Action.INCIDENT);
         sendChannel.send(muteEmbed);
     }
 };

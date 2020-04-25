@@ -16,25 +16,31 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         if (message.deletable) {
-            message.delete()
-        };
+            message.delete();
+        }
         
-        if(!message.member.hasPermission(["BAN_MEMBERS" || "ADMINISTRATOR"])) 
+        if(!message.member.hasPermission(["BAN_MEMBERS" || "ADMINISTRATOR"])) {
             return Errors.userPerms(message, "Ban Members");
+        };
 
         let banMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
-        if(!banMember) return Errors.wrongText(message, "Please provide a user to ban!");
+        if(!banMember) {
+            return Errors.wrongText(message, "Please provide a user to ban!");
+        };
     
         let banReason = args.slice(1).join(" ");
-        if(!banReason) return Errors.wrongText(message, "You must specify a reason for the ban!");
+        if(!banReason) {
+            return Errors.wrongText(message, "You must specify a reason for the ban!");
+        };
     
-        if(!message.guild.me.hasPermission(["BAN_MEMBERS" || "ADMINISTRATOR"])) 
+        if(!message.guild.me.hasPermission(["BAN_MEMBERS" || "ADMINISTRATOR"])) {
             return Errors.botPerms(message, "Ban Members");
+        };
     
         banMember.send(`Hello, you have been banned from **${message.guild.name}**\nReason: ${banReason}`).then(() => 
-        message.guild.members.ban(banMember, { days: 1, reason: banReason})).catch(err => console.log(err));
+        message.guild.members.ban(banMember, { days: 1, reason: banReason})).catch((err) => console.log(err));
     
-        message.channel.send(`**${banMember.user.tag}**, has been banned`).then(m => m.delete({ timeout: 5000 }));
+        message.channel.send(`**${banMember.user.tag}**, has been banned`).then((m) => m.delete({ timeout: 5000 }));
     
         let embed = new MessageEmbed()
             .setColor(Colors.RED)
@@ -46,7 +52,7 @@ module.exports = {
             .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.avatarURL({ dynamic: true }))
             .setTimestamp();
     
-        let sendChannel = message.guild.channels.cache.find(c => c.name === Action.INCIDENT);
+        let sendChannel = message.guild.channels.cache.find((c) => c.name === Action.INCIDENT);
         sendChannel.send(embed);
     }
-}
+};

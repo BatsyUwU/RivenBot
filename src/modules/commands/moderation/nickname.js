@@ -12,11 +12,16 @@ module.exports = {
     },
     run: async (bot, message, args) => {
         if (message.deletable) {
-            message.delete()
-        };
+            message.delete();
+        }
         
-        if(!message.member.hasPermission("MANAGE_NICKNAMES")) return Errors.userPerms(message, "Manage Nicknames");
-        if(!message.guild.me.hasPermission("MANAGE_NICKNAMES")) return Errors.botPerms(message, "Manage Nicknames");
+        if(!message.member.hasPermission("MANAGE_NICKNAMES")) {
+            return Errors.userPerms(message, "Manage Nicknames");
+        };
+
+        if(!message.guild.me.hasPermission("MANAGE_NICKNAMES")) {
+            return Errors.botPerms(message, "Manage Nicknames");
+        };
         
         let userNick = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
 
@@ -29,9 +34,11 @@ module.exports = {
         }
         
         let memberNick = args.join(" ").slice(22);
-        if(!memberNick) return Errors.wrongText(message, "No nickname was given!");
+        if(!memberNick) {
+            return Errors.wrongText(message, "No nickname was given!");
+        };
         
         await(userNick.setNickname(memberNick));
-        return message.channel.send(`Their nickname was successfully changed!`).then(m => m.delete({ timeout: 5000 }));
+        return message.channel.send("Their nickname was successfully changed!").then((m) => m.delete({ timeout: 5000 }));
     }    
 };

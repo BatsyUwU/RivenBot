@@ -1,7 +1,7 @@
 const { Client } = require("../../../utils/configs/settings");
 const activities = require("../../../assets/json/activities");
 
-module.exports = bot => {
+module.exports = (bot) => {
     console.log(`${bot.user.username} is online on ${bot.guilds.cache.size} servers!`);
 
     setInterval(function() {
@@ -9,4 +9,4 @@ module.exports = bot => {
         bot.user.setActivity(activity, {type: "PLAYING"}); //PLAYING, LISTENING, WATCHING, STREAMING
 
     }, 600000);
-}
+};
