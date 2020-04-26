@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { Colors, Emotes } = require("../../../utils/configs/settings");
-const { getMember } = require("../../../utils/functions/functions");
+const { getMember } = require("../../../utils/functions/general");
 const { stripIndents } = require("common-tags");
 const moment = require("moment");
 
