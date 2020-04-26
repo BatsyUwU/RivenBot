@@ -38,7 +38,7 @@ module.exports = {
             .setThumbnail(account.profile_pic_url_hd)
             .setDescription(stripIndents`
                 ${account.biography.length === 0 ? "None" : account.biography}
-                ${account.external_url || ""}`)
+                ${account.external_url || " "}`)
             .addField("Username", `@${account.username}`, true)
             .addField("Verified", account.is_verified ? "Yes" : "No", true)
             .addField("Private", account.is_private ? "Yes 🔐" : "No 🔓", true)
