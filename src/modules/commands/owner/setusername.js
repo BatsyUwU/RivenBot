@@ -8,7 +8,7 @@ module.exports = {
         category: "owner",
         description: "Changes the username of the bot.",
         usage: "<username>",
-        example: "Ahri",
+        example: "Akira",
         accessableby: "Owner"
     },
     run: async (bot, message, args) => {
