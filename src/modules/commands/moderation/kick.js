@@ -35,7 +35,7 @@ module.exports = {
     
         if(!message.guild.me.hasPermission(["KICK_MEMBERS" || "ADMINISTRATOR"])) {
             return Errors.botPerms(message, "Kick Members");
-        };
+        }
     
         kickMember.send(`Hello, you have been kicked from **${message.guild.name}**\nReason: ${kickReason}`).then(() => 
         kickMember.kick()).catch((err) => console.log(err));

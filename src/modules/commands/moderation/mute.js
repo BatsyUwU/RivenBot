@@ -35,7 +35,7 @@ module.exports = {
         let muteReason = args.slice(1).join(" ");
         if(!muteReason) {
             return Errors.wrongText(message, "Please enter a reason for the mute...");
-        };
+        }
     
         let muteRole = message.guild.roles.cache.find((r) => r.name === "Muted");
         if(!muteRole) {

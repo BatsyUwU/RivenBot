@@ -2,7 +2,7 @@ module.exports = {
     Access: {
         "OWNERS": `${process.env.OWNER_ID}`,
         "OPENWEATHER_KEY": `${process.env.OPEN_WEATHER_APPID}`,
-        'YOUTUBE': `${process.env.YOUTUBE_API_KEY}`
+        "YOUTUBE": `${process.env.YOUTUBE_API_KEY}`
     },
     Action: {
         "JOIN": `${process.env.CHANNEL_JOIN}`,

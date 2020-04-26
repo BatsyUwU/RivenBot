@@ -19,7 +19,7 @@ module.exports = {
         };
 
         if(message.author.id !== Access.OWNERS) { 
-            return Errors.OWNER(message);
+            return Errors.ownerAccess(message);
         };
 
         if(!args[0]) {
@@ -29,7 +29,7 @@ module.exports = {
         const commandName = args[0].toLowerCase();
         if(!bot.commands.get(commandName)) {
             return Errors.wrongText(message, "That command doesn't exist. Try again.");
-        };
+        }
         
         readdirSync(join(__dirname, "..")).forEach((f) => {
             let files = readdirSync(join(__dirname,"..",f));

@@ -22,7 +22,7 @@ module.exports = async (bot, oldMember, newMember) => {
         let addedRole = newMember.roles.cache.filter((role) => !oldMember.roles.cache.has(role.id));
         if (!addedRole.first()) {
             return;
-        };
+        }
 
         const rolesAddEmbed = new MessageEmbed()
             .setColor(Colors.GREEN)

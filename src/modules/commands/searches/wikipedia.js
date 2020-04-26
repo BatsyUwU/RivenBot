@@ -17,7 +17,7 @@ module.exports = {
         let query = args.join(" ");
         if(!query) {
             return Errors.wrongText(message, "Please provide query to search on Wikipedia");
-        };
+        }
 
         fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`).then((res) => res.json()).then((article) => {
             if(!article.content_urls) {

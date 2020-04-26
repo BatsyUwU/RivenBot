@@ -17,9 +17,9 @@ module.exports = {
     run: async (bot, message, args) => {
         if (!args[0]) {
             return Errors.wrongCmd(message, "youtube");
-        };
+        }
 
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=id,snippet&q=${args}&maxResults=1&type=video&key=${Access.YOUTUBE}`).then((res) => res.json()).then(search => {
+        fetch(`https://www.googleapis.com/youtube/v3/search?part=id,snippet&q=${args}&maxResults=1&type=video&key=${Access.YOUTUBE}`).then((res) => res.json()).then((search) => {
             try {
                 const youtubeEmbed = new MessageEmbed()
                     .setColor(Colors.YOUTUBE)

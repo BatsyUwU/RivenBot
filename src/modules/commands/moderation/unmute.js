@@ -40,7 +40,7 @@ module.exports = {
         let muteRole = message.guild.roles.cache.find((r) => r.name === "Muted");
         if(!muteRole) {
             return message.channel.send("The mentioned user isn't muted, so I cannot unmute them.").then((m) => m.delete({ timeout: 5000 }));
-        };
+        }
     
         muteMember.roles.remove(muteRole.id).then(() => {
             muteMember.send(`Hello, you have been unmuted in **${message.guild.name}**\nReason: ${muteReason}`).catch((err) => console.log(err));

@@ -47,7 +47,7 @@ module.exports = {
 
             if (text.length > 2800) {
                 return Errors.wrongText(message, "Unfortunately, the specified text is too long. Please try again with something a little shorter.");
-            };
+            }
             
             translate(text.toLowerCase(), {from: fromArg, to: toArg}).then((res) => {
                 const tranlateEmbed = new MessageEmbed()

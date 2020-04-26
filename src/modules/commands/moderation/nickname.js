@@ -36,7 +36,7 @@ module.exports = {
         let memberNick = args.join(" ").slice(22);
         if(!memberNick) {
             return Errors.wrongText(message, "No nickname was given!");
-        };
+        }
         
         await(userNick.setNickname(memberNick));
         return message.channel.send("Their nickname was successfully changed!").then((m) => m.delete({ timeout: 5000 }));

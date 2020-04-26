@@ -35,7 +35,7 @@ module.exports = {
         const validUnlocks = ["release", "rel", "unlock", "end", "stop"];
         if (!time) {
             return Errors.wrongText(message, "A duration for the lockdown must be set. This can be in hours, minutes or seconds.");
-        };
+        }
 
         let sendChannel = message.guild.channels.cache.find((c) => c.name === Action.INCIDENT);
 

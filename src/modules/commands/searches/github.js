@@ -59,7 +59,7 @@ module.exports = {
             let repo = args[2];
             if (!repo) {
                 return Errors.wrongText(message, "Please provide a repository name to search for.");
-            };
+            }
 
             fetch(`https://api.github.com/repos/${user}/${repo}`).then((res) => res.json()).then((repos) => {
                 if(repos.message) {

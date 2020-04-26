@@ -19,7 +19,7 @@ module.exports = {
         const name = args.join(" ");
         if (!name) {
             return Errors.wrongText(message, "Maybe it's useful to actually search for someone...!");
-        };
+        }
 
         let ig;
         try {

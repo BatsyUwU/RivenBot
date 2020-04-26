@@ -23,8 +23,8 @@ module.exports = {
         const status = args[0];
         
         if (!status) {
-            return Errors.wrongText(message, `Please input one of the following: \`online\`, \`idle\`, \`dnd\` or \`invisible\` and try again.`);
-        };
+            return Errors.wrongText(message, "Please input one of the following: \`online\`, \`idle\`, \`dnd\` or \`invisible\` and try again.");
+        }
         
         const statusType = args[0].toLowerCase();
 

@@ -35,7 +35,7 @@ module.exports = {
     
         if(!message.guild.me.hasPermission(["BAN_MEMBERS" || "ADMINISTRATOR"])) {
             return Errors.botPerms(message, "Ban Members");
-        };
+        }
     
         banMember.send(`Hello, you have been banned from **${message.guild.name}**\nReason: ${banReason}`).then(() => 
         message.guild.members.ban(banMember, { days: 1, reason: banReason})).catch((err) => console.log(err));

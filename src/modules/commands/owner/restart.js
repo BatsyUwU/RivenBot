@@ -18,7 +18,7 @@ module.exports = {
 
         if(message.author.id !== Access.OWNERS) {
             return Errors.ownerAccess(message);
-        };
+        }
 
         try{
             await message.channel.send("Rebooting, please wait...");

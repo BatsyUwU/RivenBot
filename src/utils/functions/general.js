@@ -16,7 +16,7 @@ module.exports = {
             
         if (!target) {
             target = message.member;
-        };
+        }
             
         return target;
     },

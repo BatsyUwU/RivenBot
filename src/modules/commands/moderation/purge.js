@@ -39,7 +39,7 @@ module.exports = {
                 message.channel.send(`☑️ **Successfully deleted ${args[0]} messages**`).then((msg) => msg.delete({ timeout: 5000 }));
             } else { 
                 return;
-            };
+            }
         } catch(err) {
             message.reply(`Something went wrong... ${err}`);
         }

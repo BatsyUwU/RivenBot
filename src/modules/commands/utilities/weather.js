@@ -53,7 +53,7 @@ module.exports = {
                 compass = "North West";
             } else {
                 compass = "North";
-            };
+            }
 
             var tempColors;
             if (res.main.temp < 0) {
