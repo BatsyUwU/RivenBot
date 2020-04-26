@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { Colors } = require("../../../utils/configs/settings");
+const { formatNumber } = require("../../../utils/functions/general");
 const { stripIndents } = require("common-tags");
 const Errors = require("../../../utils/functions/errors");
 const fetch = require("node-fetch");
@@ -41,9 +42,9 @@ module.exports = {
             .addField("Username", `@${account.username}`, true)
             .addField("Verified", account.is_verified ? "Yes" : "No", true)
             .addField("Private", account.is_private ? "Yes 🔐" : "No 🔓", true)
-            .addField("Posts", account.edge_owner_to_timeline_media.count, true)
-            .addField("Followers", account.edge_followed_by.count, true)
-            .addField("Following", account.edge_follow.count, true)
+            .addField("Posts", formatNumber(account.edge_owner_to_timeline_media.count), true)
+            .addField("Followers", formatNumber(account.edge_followed_by.count), true)
+            .addField("Following", formatNumber(account.edge_follow.count), true)
             .setFooter(`Requested by ${message.author.tag} | Powered by Instagram`, message.author.avatarURL({ dynamic: true }))
             .setTimestamp();
                 
