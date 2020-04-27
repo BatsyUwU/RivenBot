@@ -27,6 +27,7 @@
     "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "geo-tz": "^5.1.0",
+    "mathjs": "^6.6.4",
     "moment": "^2.24.0",
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.28",
