@@ -5,7 +5,6 @@ module.exports = async (bot, message) => {
         return;
     };
 
-    let suffix = message.content.substr(message.content.split(" ")[0].length + 1);
     let args = message.content.slice(Client.PREFIX.length).trim().split(/ +/g);
     let cmd = args.shift().toLowerCase();
 
@@ -15,6 +14,6 @@ module.exports = async (bot, message) => {
 
     let commandfile = bot.commands.get(cmd) || bot.commands.get(bot.aliases.get(cmd));
     if(commandfile) {
-        commandfile.run(bot, message, args, suffix);
+        commandfile.run(bot, message, args);
     }
 };
