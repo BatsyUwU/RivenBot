@@ -1,4 +1,5 @@
 const Errors = require("../../../utils/functions/errors");
+const Success = require("../../../utils/functions/success");
 
 module.exports = {
     config: {
@@ -6,8 +7,8 @@ module.exports = {
         aliases: ["prune", "clear", "bulkdelete"],
         category: "moderation",
         description: "Purges (bulk-deletes) between 2 and 99 messages.",
-        usage: "<number>",
-        example: "100",
+        usage: "[bots | mention] <number>",
+        example: "@Ryevi 10",
         accessableby: "Moderators"
 	},
     run: async (bot, message, args) => {
@@ -15,33 +16,43 @@ module.exports = {
             message.delete();
         }
     
-        if (!message.member.hasPermission("MANAGE_MESSAGES")) {
-            return Errors.userPerms(message, "Manage Messages");
-        };
-
-        if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) {
-            return Errors.botPerms(message, "Manage Messages");
-        };
-
-        if (isNaN(args[0]) || parseInt(args[0]) <= 0) {
-            return Errors.wrongText(message, "Yeah.... Thats not a number? I also cant delete 0 messages by the way.");
-        };
-
-        if (args[0] > 100) {
-            return Errors.wrongText(message, "You can't bulk delete messages with more than 100 messages.");
-        };
-
-        const fetched = await message.channel.messages.fetch({limit: args[0]});
+        if (!message.member.hasPermission("MANAGE_MESSAGES")) return Errors.userPerms(message, "Manage Messages");
+        if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return Errors.botPerms(message, "Manage Messages");
         
-        try {
-            await message.channel.bulkDelete(fetched);
-            if (args[0] > 5) {
-                message.channel.send(`☑️ **Successfully deleted ${args[0]} messages**`).then((msg) => msg.delete({ timeout: 5000 }));
-            } else { 
-                return;
-            }
-        } catch(err) {
-            message.reply(`Something went wrong... ${err}`);
+        const user = message.mentions.users.first();
+        let amount = parseInt(message.content.split(" ")[1]) ? parseInt(message.content.split(" ")[1]) : parseInt(message.content.split(" ")[2]);
+        if (!amount && !user) return Errors.wrongText(message, "You must specify a user and amount, or just an amount, of messages to purge.");
+        if (!amount) return Errors.wrongText(message, "You must specify an amount to delete.");
+        if (amount < 2 || amount > 99) return Errors.wrongText(message, "You've provided an invalid number of messages to delete. Please ensure it's between 2 and 99 (inclusive).");
+        let messages = await message.channel.messages.fetch({limit: amount});
+
+        if (user) {
+            const filterBy = user ? user.id : bot.user.id;
+            messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
+            message.channel.bulkDelete(messages)
+            .then(() => {
+                Success.purgeAction(message, amount);
+            })
+            .catch(err => {
+                if (err.message === "You can only bulk delete messages that are under 14 days old.") return Errors.wrongText(message, err.message);
+            });
+        } else if (args[0] === "bots") {
+            messages = messages.filter(m => m.author.bot).array().slice(0, amount);
+            message.channel.bulkDelete(messages)
+            .then(() => {
+                Success.purgeAction(message, amount);
+            })
+            .catch(err => {
+                if (err.message === "You can only bulk delete messages that are under 14 days old.") return Errors.wrongText(message, err.message);
+            });
+        } else {
+            message.channel.bulkDelete(messages)
+            .then(() => {
+                Success.purgeAction(message, amount);
+            })
+            .catch(err => {
+                if (err.message === "You can only bulk delete messages that are under 14 days old.") return Errors.wrongText(message, err.message);
+            });
         }
     }
 };

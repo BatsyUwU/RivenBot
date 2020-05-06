@@ -13,5 +13,20 @@ module.exports.modAction = (target, message, text) => {
         replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
     }
 
-    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 5000 }));
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 10000 }));
+};
+
+module.exports.purgeAction = (message, text) => {
+    let replyEmbed = new MessageEmbed()
+        .setColor(Colors.GREEN)
+        .setTitle("Successful")
+        .setDescription(`✅ **${message.author.tag}**, \`${text}\` messages were purged.`)
+        .setFooter(message.author.tag)
+        .setTimestamp();
+
+    if (message.author.avatarURL() !== null) {
+        replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
+    }
+
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 10000 }));
 };
