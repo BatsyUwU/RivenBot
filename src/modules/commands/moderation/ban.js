@@ -63,15 +63,15 @@ module.exports = {
         }
 
         if (banReason) {
-            if (!banMember.bot) {
+            if (!banMember.user.bot) {
                 Direct.banDM(banMember, message, banReason);
-                message.guild.members.ban(banMember, { days: 3, reason: banReason});
             }
+            message.guild.members.ban(banMember, { days: 7, reason: banReason});
             Success.modAction(banMember, message, "successfully banned");
 
             let banEmbed = new MessageEmbed()
                 .setColor(Colors.RED)
-                .setTitle(`🚫 Member banned`)
+                .setTitle("🚫 Member banned")
                 .setThumbnail(banMember.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
                 .setDescription(stripIndents`
                     **Punished User:** ${banMember.user.tag} (${banMember.user.id})
