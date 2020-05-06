@@ -10,10 +10,10 @@ module.exports = {
     config: {
         name: "corona",
         aliases: ["covid"],
-        category: "searches",
+        category: "miscellaneous",
         description: "Shows some information about COVID-19!",
-        usage: "",
-        example: "",
+        usage: "<all | country>",
+        example: "China",
         accessableby: "Members"
     },
     run: async (bot, message, args) => {
@@ -35,7 +35,7 @@ module.exports = {
                 .addField("Today's Deaths", formatNumber(corona.todayDeaths), true)
                 .addField("Active Cases", formatNumber(corona.active), true)
                 .addField("Affected Countries", formatNumber(corona.affectedCountries), false)
-                .addField("Last Updated", moment(corona.updated).format("ddd, DD MMMM YYYY HH:mm [GMT]Z"), false)
+                .addField("Last Updated", `${moment(corona.updated).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")} (Server Time)`, false)
                 .setFooter("Data provided by Johns Hopkins University")
                 .setTimestamp();
             
@@ -45,7 +45,7 @@ module.exports = {
             
             const coronaEmbed = new MessageEmbed()
                 .setColor(Colors.CUSTOM)
-                .setTitle(`${corona.country}`)
+                .setTitle(`${corona.country} Cases`)
                 .setThumbnail(corona.countryInfo.flag)
                 .setDescription("Sometimes cases number may differ from small amount.")
                 .addField("Cases", formatNumber(corona.cases), true)
@@ -54,7 +54,7 @@ module.exports = {
                 .addField("Today's Cases", formatNumber(corona.todayCases), true)
                 .addField("Today's Deaths", formatNumber(corona.todayDeaths), true)
                 .addField("Active Cases", formatNumber(corona.active), true)
-                .addField("Last Updated", moment(corona.updated).format("ddd, DD MMMM YYYY HH:mm [GMT]Z"), false)
+                .addField("Last Updated", `${moment(corona.updated).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")} (Server Time)`, false)
                 .setFooter("Data provided by Johns Hopkins University")
                 .setTimestamp();
             
