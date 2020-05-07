@@ -6,7 +6,7 @@ module.exports = {
         
         if (!target && message.mentions.members) { 
             target = message.mentions.members.first();
-        };
+        }
 
         if (!target && toFind) {
             target = message.guild.members.cache.find((member) => {
@@ -22,5 +22,11 @@ module.exports = {
     },
     formatNumber: function(number) {
         return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    },
+    isEmpty: async (obj) => {
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) return false;
+        }
+        return true;
     }
 };

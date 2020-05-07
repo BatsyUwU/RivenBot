@@ -30,3 +30,33 @@ module.exports.cancel = (title, message, cmd) => {
 
     message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 10000 }));
 };
+
+module.exports.muteRoles = (message, text) => {
+    let replyEmbed = new MessageEmbed()
+        .setColor(Colors.ORANGE)
+        .setTitle("Roles not found")
+        .setDescription(`⚠️ **${message.author.tag}**, ${text}`)
+        .setFooter(message.author.tag)
+        .setTimestamp();
+
+    if (message.author.avatarURL() !== null) {
+        replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
+    }
+
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 30000 }));
+};
+
+module.exports.customWarn = (title, message, text) => {
+    let replyEmbed = new MessageEmbed()
+        .setColor(Colors.ORANGE)
+        .setTitle(title)
+        .setDescription(`⚠️ **${message.author.tag}**, ${text}`)
+        .setFooter(message.author.tag)
+        .setTimestamp();
+
+    if (message.author.avatarURL() !== null) {
+        replyEmbed.setFooter(message.author.tag, message.author.avatarURL({ dynamic: true }));
+    }
+
+    message.channel.send(replyEmbed).then((m) => m.delete({ timeout: 30000 }));
+};

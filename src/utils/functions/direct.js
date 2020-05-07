@@ -8,7 +8,7 @@ module.exports.banDM = (target, message, reason) => {
         .setTitle(`🚫 Banned from ${message.guild.name}`)
         .setThumbnail(message.guild.iconURL({ dynamic: true }))
         .setDescription(stripIndents`
-            Hello, you have been banned.
+            Hello, you were banned by moderator.
             Reason: ${reason}\n
             __*Please make sure you always follow the rules, because not doing so can result in punishment.*__`)
         .setTimestamp();
@@ -22,9 +22,23 @@ module.exports.kickDM = (target, message, reason) => {
         .setTitle(`👢 Kicked from ${message.guild.name}`)
         .setThumbnail(message.guild.iconURL({ dynamic: true }))
         .setDescription(stripIndents`
-            Hello, you have been kicked.
+            Hello, you were kicked by moderator.
             Reason: ${reason}\n
             __*Please make sure you always follow the rules, because not doing so can result in punishment.*__`)
+        .setTimestamp();
+
+    target.send(replyEmbed);
+};
+
+module.exports.muteDM = (target, message, reason) => {
+    let replyEmbed = new MessageEmbed()
+        .setColor(Colors.GREY)
+        .setTitle(`🔇 Muted from ${message.guild.name}`)
+        .setThumbnail(message.guild.iconURL({ dynamic: true }))
+        .setDescription(stripIndents`
+            Hello, you were muted by moderator.
+            Reason: ${reason}\n
+            __*Please ensure you follow all the rules of the server in the future to avoid this occurring again.*__`)
         .setTimestamp();
 
     target.send(replyEmbed);
