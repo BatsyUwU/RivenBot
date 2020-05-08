@@ -23,7 +23,7 @@ module.exports = {
             
             const langEmbed = new MessageEmbed()
                 .setColor(Colors.G_TRANSLATE)
-                .setAuthor("Google Translate Engine", "https://cdn.discordapp.com/attachments/646882466333851672/702744617468035112/translate-round.png", "https://translate.google.com/")
+                .setAuthor("Google Translate Engine", "https://i.imgur.com/1JS81kv.png", "https://translate.google.com/")
                 .setTitle("Available Languages")
                 .setDescription(`\`\`\`JSON\n${JSON.stringify(Languages).split(",").join(",\n")}\`\`\``)
                 .setFooter(`Requested by ${message.author.tag} | Powered by Google Translate`, message.author.avatarURL({ dynamic: true }))

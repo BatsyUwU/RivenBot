@@ -32,7 +32,7 @@ module.exports = {
         
         const instagramEmbed = new MessageEmbed()
             .setColor(Colors.INSTAGRAM)
-            .setAuthor("Instagram Search Engine", "https://i.imgur.com/M6yBwxS.png", "https://instagram.com/")
+            .setAuthor("Instagram Search Engine", "https://i.imgur.com/wgMjJvq.png", "https://instagram.com/")
             .setTitle(account.full_name)
             .setURL(`https://instagram.com/${name}`)
             .setThumbnail(account.profile_pic_url_hd)

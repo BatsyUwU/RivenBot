@@ -26,7 +26,7 @@ module.exports = {
 
             const articleEmbed = new MessageEmbed()
                 .setColor(Colors.WIKIPEDIA)
-                .setAuthor("Wikipedia Search Engine", "https://i.imgur.com/fnhlGh5.png", "https://en.wikipedia.org/")
+                .setAuthor("Wikipedia Search Engine", "https://i.imgur.com/C665mkB.png", "https://en.wikipedia.org/")
                 .setTitle(article.title)
                 .setURL(article.content_urls.desktop.page)
                 .setDescription(article.extract)

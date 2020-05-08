@@ -32,7 +32,7 @@ module.exports = {
 
                 const usersEmbed = new MessageEmbed()
                     .setColor(Colors.GITHUB)
-                    .setAuthor("GitHub Search Engine", "https://i.imgur.com/e4HunUm.png", "https://github.com/")
+                    .setAuthor("GitHub Search Engine", "https://i.imgur.com/4EDz1aY.png", "https://github.com/")
                     .setTitle(users.login)
                     .setURL(users.html_url)
                     .setThumbnail(users.avatar_url)

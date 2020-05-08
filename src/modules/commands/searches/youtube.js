@@ -23,7 +23,7 @@ module.exports = {
             try {
                 const youtubeEmbed = new MessageEmbed()
                     .setColor(Colors.YOUTUBE)
-                    .setAuthor("YouTube Search Engine", "https://i.imgur.com/MaV8orh.png", "https://youtube.com/")
+                    .setAuthor("YouTube Search Engine", "https://i.imgur.com/lbS6Vil.png", "https://youtube.com/")
                     .setTitle(search.items[0].snippet.title)
                     .setURL(`https://www.youtube.com/watch?v=${search.items[0].id.videoId}`)
                     .setDescription(stripIndents`

@@ -20,7 +20,7 @@ module.exports = {
         malScraper.getInfoFromName(search).then(data => {
             const animeEmbed = new MessageEmbed()
                 .setColor(Colors.MAL)
-                .setAuthor("My Anime List Search Engine", "https://i.imgur.com/vEy5Zaq.png", "https://myanimelist.net/")
+                .setAuthor("My Anime List Search Engine", "https://i.imgur.com/QABhOrL.png", "https://myanimelist.net/")
                 .setTitle(data.title)
                 .setURL(data.url)
                 .setThumbnail(data.picture)
