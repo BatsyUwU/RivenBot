@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { Action, Colors } = require("../../../utils/configs/settings");
 
 module.exports = async (bot, member) => {
-    let sendChannel = member.guild.channels.cache.find((ch) => ch.name === `${Action.JOIN}`);
+    let sendChannel = member.guild.channels.cache.find((ch) => ch.name === `${Action.GREETING}`);
 
     let embed = new MessageEmbed()
         .setAuthor("Member Joined", member.user.avatarURL())

@@ -63,8 +63,7 @@ You can find all settings in the **settings.js** file, without filling in all th
 | Key                  | Value                         | Example      |
 | :---                 | :---                          | :---         |
 | `BOT_TOKEN`          | Your discord api token        | NjQ4XXXXXX   |
-| `CHANNEL_JOIN`       | Channel for welcome greeter   | join-leave   |
-| `CHANNEL_LEAVE`      | Channel for left guild        | join-leave   |
+| `CHANNEL_GREETING`   | Channel for welcome greeter   | join-leave   |
 | `CHANNEL_INCIDENT`   | Channel for incident guild    | incident     |
 | `OPEN_WEATHER_APPID` | Input your OpenWeather AppID  | 0c58XXXXXX   |
 | `OWNER_ID`           | Your discord id               | 4275XXXXXX   |

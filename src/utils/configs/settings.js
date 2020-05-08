@@ -5,8 +5,7 @@ module.exports = {
         "YOUTUBE": `${process.env.YOUTUBE_API_KEY}`
     },
     Action: {
-        "JOIN": `${process.env.CHANNEL_JOIN}`,
-        "LEAVE": `${process.env.CHANNEL_LEAVE}`,
+        "GREETING": `${process.env.CHANNEL_GREETING}`,
         "INCIDENT": `${process.env.CHANNEL_INCIDENT}`
     },
     Client: {
