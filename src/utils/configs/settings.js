@@ -40,6 +40,7 @@ module.exports = {
         "G_TRANSLATE": "4989f4",
         "GITHUB": "282828",
         "INSTAGRAM": "e1306c",
+        "MAL": "2e51a2",
         "YOUTUBE": "c4302b",
         "WIKIPEDIA": "6b6b6b"
     },
