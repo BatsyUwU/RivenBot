@@ -21,7 +21,7 @@ module.exports = {
             return Errors.wrongText(message, "Please provide me a city to search up!");
         }
         
-        weather.setAPPID(Access.OPENWEATHER_KEY);
+        weather.setAPPID(Access.OPENWEATHER);
         weather.setLang("en");
         weather.setUnits("metric");
         weather.setCity(city);
