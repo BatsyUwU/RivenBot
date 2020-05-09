@@ -67,6 +67,7 @@ You can find all the settings in the **settings.js** file, without filling in al
 BOT_TOKEN=Input here your Discord bot token
 CHANNEL_GREETING=Input here your channel name for the welcome greeting
 CHANNEL_INCIDENT=Input here your channel name for each incident on the server
+IMDB_API_KEY=Input here your IMDb API. Otherwise the imdb command does not work
 OPEN_WEATHER_APPID=Input here your OpenWeather AppID. Otherwise the weather command does not work
 OWNER_ID=Input here your ID as the bot owner
 PREFIX=Input here the prefix for your bot. To use before the command is carried out. Example: ?
