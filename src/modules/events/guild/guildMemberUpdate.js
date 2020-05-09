@@ -16,23 +16,5 @@ module.exports = async (bot, oldMember, newMember) => {
             .setTimestamp();
 
         sendChannel.send(nicknameEmbed);
-    };
-
-    if (oldMember.roles !== newMember.roles) {
-        let addedRole = newMember.roles.cache.filter((role) => !oldMember.roles.cache.has(role.id));
-        if (!addedRole.first()) {
-            return;
-        }
-
-        const rolesAddEmbed = new MessageEmbed()
-            .setColor(Colors.GREEN)
-            .setAuthor("Role Given", newMember.user.avatarURL({ dynamic: true }))
-            .setDescription(`**${newMember.user.tag}** has been given a role`)
-            .setThumbnail(newMember.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
-            .addField("Role", `${addedRole.first().name} (${addedRole.first().id})`)
-            .setFooter(`ID: ${newMember.user.id}`)
-            .setTimestamp();
-
-        sendChannel.send(rolesAddEmbed);
     }
 };
