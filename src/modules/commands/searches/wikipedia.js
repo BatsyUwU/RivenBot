@@ -29,8 +29,8 @@ module.exports = {
                 .setAuthor("Wikipedia Search Engine", "https://i.imgur.com/C665mkB.png", "https://en.wikipedia.org/")
                 .setTitle(article.title)
                 .setURL(article.content_urls.desktop.page)
+                .setThumbnail(article.originalimage ? article.originalimage.source : null)
                 .setDescription(article.extract)
-                .setThumbnail(article.originalimage.source)
                 .setFooter(`Requested by ${message.author.tag} | Powered by Wikipedia`, message.author.avatarURL({ dynamic: true }))
                 .setTimestamp();
 
