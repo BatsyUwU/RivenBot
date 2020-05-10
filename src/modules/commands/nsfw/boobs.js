@@ -13,7 +13,7 @@ module.exports = {
         example: "",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (!message.channel.nsfw) return Errors.nsfwAccess(message);
 
         const roleColor = message.guild.me.roles.highest.hexColor;

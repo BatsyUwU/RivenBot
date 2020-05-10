@@ -11,7 +11,7 @@ module.exports = {
         example: "",
         accessableby: "Owner"
     },
-    run: async (bot, message) => {
+    run: async (client, message) => {
         if (message.deletable) {
             message.delete();
         }

@@ -15,7 +15,7 @@ module.exports = {
         example: "en id Hello World",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (args[0] === "lang") {
             if (message.deletable) {
                 message.delete();

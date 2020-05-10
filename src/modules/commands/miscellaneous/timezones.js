@@ -13,7 +13,7 @@ module.exports = {
         example: "",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         const unix = Math.round(+new Date() / 1000);
         const roleColor = message.guild.me.roles.highest.hexColor;
 

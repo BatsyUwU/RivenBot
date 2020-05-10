@@ -10,7 +10,7 @@ module.exports = {
         example: "#general Hello World",
         accessableby: "Administrator"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (message.deletable) {
             message.delete();
         }

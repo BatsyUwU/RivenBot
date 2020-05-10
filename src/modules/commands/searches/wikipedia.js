@@ -13,7 +13,7 @@ module.exports = {
         example: "Google",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         let query = args.join(" ");
         if(!query) {
             return Errors.wrongText(message, "Please provide query to search on Wikipedia");

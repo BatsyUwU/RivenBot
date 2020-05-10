@@ -16,7 +16,7 @@ module.exports = {
         example: "China",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if(!args.length) {
             return Errors.wrongText(message, "Please give the name of country");
         }

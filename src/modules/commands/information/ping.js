@@ -10,7 +10,7 @@ module.exports = {
         example: "",
         accessableby: "Members"
     },
-    run: async (bot, message) => {
+    run: async (client, message) => {
         const msg = await message.channel.send("Pinging...");
         const ping = Math.round(msg.createdTimestamp - message.createdTimestamp);
     

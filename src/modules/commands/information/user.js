@@ -14,7 +14,7 @@ module.exports = {
         example: "@Rygent",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         const member = getMember(message, args.join(" "));
 
         let status = {

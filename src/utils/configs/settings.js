@@ -5,11 +5,11 @@ module.exports = {
         "YOUTUBE": `${process.env.YOUTUBE_API_KEY}`,
         "IMDB": `${process.env.IMDB_API_KEY}`
     },
-    Action: {
+    Actions: {
         "GREETING": `${process.env.CHANNEL_GREETING}`,
         "INCIDENT": `${process.env.CHANNEL_INCIDENT}`
     },
-    Client: {
+    Clients: {
         "PREFIX": `${process.env.PREFIX}`
     },
     Colors: {

@@ -13,7 +13,7 @@ module.exports = {
         example: "@hnxtasia",
         accessableby: "Members"
     },
-    run: async (bot, message) => {
+    run: async (client, message) => {
         let mention = message.mentions.users.first();
 
         const roleColor = message.guild.me.roles.highest.hexColor;

@@ -11,7 +11,7 @@ module.exports = {
         example: "@Ryevi 10",
         accessableby: "Moderators"
 	},
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (message.deletable) {
             message.delete();
         }
@@ -27,7 +27,7 @@ module.exports = {
         let messages = await message.channel.messages.fetch({limit: amount});
 
         if (user) {
-            const filterBy = user ? user.id : bot.user.id;
+            const filterBy = user ? user.id : client.user.id;
             messages = messages.filter(m => m.author.id === filterBy).array().slice(0, amount);
             message.channel.bulkDelete(messages)
             .then(() => {

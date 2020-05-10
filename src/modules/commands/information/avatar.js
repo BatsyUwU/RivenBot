@@ -12,7 +12,7 @@ module.exports = {
         example: "@Rygent",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         let msg = await message.channel.send("Generating...");
         let target = getMember(message, args.join(" "));
         msg.delete();

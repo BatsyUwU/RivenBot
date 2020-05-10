@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { Access, Action, Colors } = require("../../../utils/configs/settings");
+const { Access, Actions, Colors } = require("../../../utils/configs/settings");
 const { stripIndents } = require("common-tags");
 const Errors = require("../../../utils/functions/errors");
 const Success = require("../../../utils/functions/success");
@@ -17,7 +17,7 @@ module.exports = {
         example: "@Ryevi Spamming",
         accessableby: "Moderators"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (message.deletable) {
             message.delete();
         }
@@ -78,9 +78,9 @@ module.exports = {
                     **Punished By:** ${message.author.tag} (${message.author.id})
                     **Reason:** ${banReason}
                     **Date & Time:** ${moment(message.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")} (Server Time)`)
-                .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.avatarURL({ dynamic: true }))
+                .setFooter(`Moderation system powered by ${client.user.username}`, client.user.avatarURL({ dynamic: true }))
                 .setTimestamp();
-            let sendChannel = message.guild.channels.cache.find((ch) => ch.name === Action.INCIDENT);
+            let sendChannel = message.guild.channels.cache.find((ch) => ch.name === Actions.INCIDENT);
             sendChannel.send(banEmbed);
         }
     }

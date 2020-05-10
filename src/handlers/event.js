@@ -1,13 +1,13 @@
 const { readdirSync } = require("fs");
 
-module.exports = (bot) => {
-    const load = (dirs) => {
-        const events = readdirSync(`./src/modules/events/${dirs}/`).filter((d) => d.endsWith(".js"));
-        for (let file of events) {
-            const evt = require(`../modules/events/${dirs}/${file}`);
-            let eName = file.split(".")[0];
-            bot.on(eName, evt.bind(null, bot));
-        }
-    };
-    ["client", "guild"].forEach((x) => load(x));
+module.exports = (client) => {
+	const load = (dirs) => {
+		const events = readdirSync(`./src/modules/events/${dirs}/`).filter((file) => file.endsWith(".js"));
+		for (let file of events) {
+			const evt = require(`../modules/events/${dirs}/${file}`);
+			let eName = file.split(".")[0];
+			client.on(eName, evt.bind(null, client));
+		}
+	};
+	["client", "guild"].forEach((x) => load(x));
 };

@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { Client, Colors } = require("../configs/settings");
+const { Clients, Colors } = require("../configs/settings");
 
 module.exports.ownerAccess = (message) => {
     let replyEmbed = new MessageEmbed()
@@ -125,7 +125,7 @@ module.exports.wrongCmd = (message, cmd) => {
     let replyEmbed = new MessageEmbed()
         .setColor(Colors.RED)
         .setTitle("Can't read that.")
-        .setDescription(`💢 **${message.author.tag}**, Please enter something or read on \`${Client.PREFIX}help ${cmd}\``)
+        .setDescription(`💢 **${message.author.tag}**, Please enter something or read on \`${Clients.PREFIX}help ${cmd}\``)
         .setFooter(message.author.tag)
         .setTimestamp();
 

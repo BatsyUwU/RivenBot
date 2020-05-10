@@ -14,7 +14,7 @@ module.exports = {
         example: "Avengers: Endgame",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         const query = args.join(" ");
         if (!query) return Errors.wrongText(message, "Please give the name of movie or series");
 

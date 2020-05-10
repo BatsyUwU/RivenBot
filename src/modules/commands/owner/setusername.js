@@ -11,7 +11,7 @@ module.exports = {
         example: "Akira",
         accessableby: "Owner"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (message.deletable) {
             message.delete();
         }
@@ -25,7 +25,7 @@ module.exports = {
             return Errors.wrongText(message, "Please input some text to set as the username!");
         }
 
-        await(bot.user.setUsername(nick));
+        await(client.user.setUsername(nick));
         return message.channel.send(`Successfully change username to ${nick}`).then((m) => m.delete({ timeout: 5000 }));
     }
 };

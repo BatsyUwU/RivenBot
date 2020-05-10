@@ -13,7 +13,7 @@ module.exports = {
         example: "Do you love me?",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (!args[1]) {
             return Errors.wrongText(message, "Please provide a question for me to answer.");
         }

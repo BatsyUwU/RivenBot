@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { Action, Colors } = require("../../../utils/configs/settings");
+const { Actions, Colors } = require("../../../utils/configs/settings");
 const { stripIndents } = require("common-tags");
 const Errors = require("../../../utils/functions/errors");
 const moment = require("moment");
@@ -15,7 +15,7 @@ module.exports = {
         example: "5 min",
         accessableby: "Moderators"
 	},
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (message.deletable) {
             message.delete();
         }
@@ -27,8 +27,8 @@ module.exports = {
             return Errors.botPerms(message, "Manage Messages");
         };
 
-        if (!bot.lockit) {
-            bot.lockit = [];
+        if (!client.lockit) {
+            client.lockit = [];
         };
 
         const time = args.join(" ");
@@ -37,15 +37,15 @@ module.exports = {
             return Errors.wrongText(message, "A duration for the lockdown must be set. This can be in hours, minutes or seconds.");
         }
 
-        let sendChannel = message.guild.channels.cache.find((c) => c.name === Action.INCIDENT);
+        let sendChannel = message.guild.channels.cache.find((c) => c.name === Actions.INCIDENT);
 
         const roleColor = message.guild.me.roles.highest.hexColor;
 
         if (validUnlocks.includes(time)) {
             message.channel.updateOverwrite(message.guild.id, { SEND_MESSAGES: null }).then(() => {
                 message.channel.send("Lockdown lifted.").then((m) => m.delete({timeout: 5000}));
-                clearTimeout(bot.lockit[message.channel.id]);
-                delete bot.lockit[message.channel.id];
+                clearTimeout(client.lockit[message.channel.id]);
+                delete client.lockit[message.channel.id];
             });
         } else {
             message.channel.updateOverwrite(message.guild.id, { SEND_MESSAGES: false }).then(() => {
@@ -57,14 +57,14 @@ module.exports = {
                     **Issued by:** ${message.author.tag} (${message.author.id})
                     **Duration:** ${ms(ms(time), { long: true })}
                     **Date & Time:** ${moment(message.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`)
-                    .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.displayAvatarURL({ dynamic: true }))
+                    .setFooter(`Moderation system powered by ${client.user.username}`, client.user.displayAvatarURL({ dynamic: true }))
                     .setTimestamp();
                 
                 sendChannel.send(lockEmbed).then(() => {
-                    bot.lockit[message.channel.id] = setTimeout(() => {
+                    client.lockit[message.channel.id] = setTimeout(() => {
                         message.channel.updateOverwrite(message.guild.id, { SEND_MESSAGES: null })
                         .then(message.channel.send("Lockdown lifted.").then((m) => m.delete({timeout: 5000}))).catch(console.error);
-                        delete bot.lockit[message.channel.id];
+                        delete client.lockit[message.channel.id];
                     }, ms(time));
                 });
             });

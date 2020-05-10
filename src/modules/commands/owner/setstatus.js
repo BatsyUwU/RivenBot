@@ -11,7 +11,7 @@ module.exports = {
         example: "idle",
         accessableby: "Owners"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (message.deletable) {
             message.delete();
         };
@@ -29,7 +29,7 @@ module.exports = {
         const statusType = args[0].toLowerCase();
 
         if (statusType === "online" || statusType === "idle" || statusType === "dnd" || statusType === "invisible") {
-            bot.user.setStatus(status);
+            client.user.setStatus(status);
             message.channel.send(`Status successfully changed to **${statusType}**.\nPlease note that initially changing status may take up to a minute or two.`).then((m) => m.delete({ timeout: 10000 }));
         } else {
             return Errors.wrongText(message, `"${statusType}" is not a valid status type.`);

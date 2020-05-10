@@ -15,7 +15,7 @@ module.exports = {
         example: "hnxtasia",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         const name = args.join(" ");
         if (!name) {
             return Errors.wrongText(message, "Maybe it's useful to actually search for someone...!");

@@ -1,12 +1,12 @@
-const { Client } = require("../../../utils/configs/settings");
+const { Clients } = require("../../../utils/configs/settings");
 const activities = require("../../../assets/json/activities");
 
-module.exports = (bot) => {
-    console.log(`${bot.user.username} is online on ${bot.guilds.cache.size} servers!`);
+module.exports = (client) => {
+    console.log(`${client.user.username} is online on ${client.guilds.cache.size} servers!`);
 
     setInterval(function() {
-        let activity = `${Client.PREFIX}help | ${activities[Math.floor(Math.random() * activities.length)]}`;
-        bot.user.setActivity(activity, {type: "PLAYING"}); //PLAYING, LISTENING, WATCHING, STREAMING
+        let activity = `${Clients.PREFIX}help | ${activities[Math.floor(Math.random() * activities.length)]}`;
+        client.user.setActivity(activity, {type: "LISTENING"}); //PLAYING, LISTENING, WATCHING, STREAMING
 
     }, 600000);
 };

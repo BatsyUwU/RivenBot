@@ -13,7 +13,7 @@ module.exports = {
         example: "Oregairu",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         const search = args.join(" ");
         if (!search) return Errors.wrongCmd(message, "anime");
 

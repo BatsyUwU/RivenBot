@@ -16,7 +16,7 @@ module.exports = {
         example: "",
         accessableby: "Members"
     },
-    run: async (bot, message) => {
+    run: async (client, message) => {
         let freeRAM = os.freemem();
         let usedRAM = os.totalmem() - freeRAM;
 
@@ -41,9 +41,9 @@ module.exports = {
     
         const statsEmbed = new MessageEmbed()
             .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-            .setAuthor(`${bot.user.username}'s statistics information`, bot.user.avatarURL({ dynamic: true }))
+            .setAuthor(`${client.user.username}'s statistics information`, client.user.avatarURL({ dynamic: true }))
             .setDescription("Here are some stats about the bot and other stuff")
-            .setThumbnail(bot.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
+            .setThumbnail(client.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
             .addField("Used", stripIndents`
                 RAM: ${diagramMaker(usedRAM, freeRAM)} [${Math.round(100 * usedRAM / (usedRAM + freeRAM))}%]
                 CPU: ${diagramMaker(cpuUsage, 100-cpuUsage)} [${Math.round(cpuUsage)}%]`, false)
@@ -53,12 +53,12 @@ module.exports = {
                 CPU Speed: ${os.cpus()[0].speed}MHz
                 Total RAM: ${Math.round(os.totalmem / 1000000000)}GBs`, false)
             .addField("Operation System", `${os.type} ${os.release} ${os.arch}`, false)
-            .addField("Total Users", bot.users.cache.size, true)
-            .addField("Total Emotes", bot.emojis.cache.size, true)
-            .addField("Total Guilds", bot.guilds.cache.size, true)
-            .addField("Bot Uptime", moment.duration(bot.uptime).format("D [days], H [hrs], m [mins], s [secs]"), true)
+            .addField("Total Users", client.users.cache.size, true)
+            .addField("Total Emotes", client.emojis.cache.size, true)
+            .addField("Total Guilds", client.guilds.cache.size, true)
+            .addField("Bot Uptime", moment.duration(client.uptime).format("D [days], H [hrs], m [mins], s [secs]"), true)
             .addField("Host Uptime", moment.duration(os.uptime*1000).format("D [days], H [hrs], m [mins], s [secs]"), true)
-            .setFooter(`Requested by ${message.author.tag} | Powered by Heroku | Last started on ${moment(bot.readyAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`, message.author.avatarURL({ dynamic: true }));
+            .setFooter(`Requested by ${message.author.tag} | Powered by Heroku | Last started on ${moment(client.readyAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`, message.author.avatarURL({ dynamic: true }));
 
         message.channel.send(statsEmbed);
     }

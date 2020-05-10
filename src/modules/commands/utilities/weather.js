@@ -15,7 +15,7 @@ module.exports = {
         example: "Jakarta",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         let city = args.join("").toLowerCase();
         if (!city) {
             return Errors.wrongText(message, "Please provide me a city to search up!");

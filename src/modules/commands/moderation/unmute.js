@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { Access, Action, Client, Colors } = require("../../../utils/configs/settings");
+const { Access, Actions, Clients, Colors } = require("../../../utils/configs/settings");
 const { isEmpty } = require("../../../utils/functions/general");
 const { stripIndents } = require("common-tags");
 const Errors = require("../../../utils/functions/errors");
@@ -18,7 +18,7 @@ module.exports = {
         example: "@Rygent Request to unmute",
         accessableby: "Moderators"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (message.deletable) {
             message.delete();
         }
@@ -28,7 +28,7 @@ module.exports = {
 
         const muteRole = message.guild.roles.cache.find(role => role.name === "Muted");
         const empty = await isEmpty(muteRole);
-        if (empty) return Warning.muteRoles(message, `A "Muted" role does not exist on this server. To create one, please run the \`${Client.PREFIX}mute\` command.`);
+        if (empty) return Warning.muteRoles(message, `A "Muted" role does not exist on this server. To create one, please run the \`${Clients.PREFIX}mute\` command.`);
     
         const muteMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
         let muteReason = args.slice(1).join(" ");
@@ -72,10 +72,10 @@ module.exports = {
                 **By:** ${message.author.tag} (${message.author.id})
                 **Reason:** ${muteReason}
                 **Date & Time:** ${moment(message.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")} (Server Time)`)
-            .setFooter(`Moderation system powered by ${bot.user.username}`, bot.user.avatarURL({ dynamic: true }))
+            .setFooter(`Moderation system powered by ${client.user.username}`, client.user.avatarURL({ dynamic: true }))
             .setTimestamp();
 
-        let sendChannel = message.guild.channels.cache.find(ch => ch.name === Action.INCIDENT);
+        let sendChannel = message.guild.channels.cache.find(ch => ch.name === Actions.INCIDENT);
         sendChannel.send(muteEmbed);
     }
 };

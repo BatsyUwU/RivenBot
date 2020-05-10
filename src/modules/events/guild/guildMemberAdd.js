@@ -1,10 +1,10 @@
 const { MessageEmbed } = require("discord.js");
-const { Action, Colors } = require("../../../utils/configs/settings");
+const { Actions, Colors } = require("../../../utils/configs/settings");
 
-module.exports = async (bot, member) => {
-    let sendChannel = member.guild.channels.cache.find((ch) => ch.name === `${Action.GREETING}`);
+module.exports = async (client, member) => {
+    const sendChannel = member.guild.channels.cache.find((channel) => channel.name === Actions.GREETING);
 
-    let embed = new MessageEmbed()
+    const embed = new MessageEmbed()
         .setAuthor("Member Joined", member.user.avatarURL())
         .setDescription(`${member} ${member.user.tag}`)
         .setThumbnail(member.user.avatarURL({ format: "png", dynamic: true, size: 4096 }))

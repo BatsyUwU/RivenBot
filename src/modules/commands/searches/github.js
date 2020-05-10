@@ -14,7 +14,7 @@ module.exports = {
         example: "repos XRzky AkiraBot",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (!args[0]) {
             return Errors.wrongCmd(message, "github");
         };

@@ -12,7 +12,7 @@ module.exports = {
         example: "10+7",
         accessableby: "Members"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (!args[0]) {
             return message.channel.send("You have to specify what you would like to count on!");
         }

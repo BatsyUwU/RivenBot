@@ -13,7 +13,7 @@ module.exports = {
         example: "ping",
         accessableby: "Owner"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (message.deletable) {
             message.delete();
         };
@@ -27,7 +27,7 @@ module.exports = {
         };
         
         const commandName = args[0].toLowerCase();
-        if(!bot.commands.get(commandName)) {
+        if(!client.commands.get(commandName)) {
             return Errors.wrongText(message, "That command doesn't exist. Try again.");
         }
         
@@ -36,9 +36,9 @@ module.exports = {
             if(files.includes(commandName + ".js")) {
                 try {
                     delete require.cache[require.resolve(`../${f}/${commandName}.js`)];
-                    bot.commands.delete(commandName);
+                    client.commands.delete(commandName);
                     const pull = require(`../${f}/${commandName}.js`);
-                    bot.commands.set(commandName, pull);
+                    client.commands.set(commandName, pull);
                     return message.channel.send(`Successfully reloaded \`${commandName}.js\`!`).then((m) => m.delete({timeout: 30000}));
                 } catch(e) {
                     return message.channel.send(`Could not reload: \`${args[0].toUpperCase()}\``).then((m) => m.delete({timeout: 30000}));

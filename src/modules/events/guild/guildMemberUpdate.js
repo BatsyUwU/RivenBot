@@ -1,8 +1,8 @@
 const { MessageEmbed } = require("discord.js");
-const { Action, Colors } = require("../../../utils/configs/settings");
+const { Actions, Colors } = require("../../../utils/configs/settings");
 
-module.exports = async (bot, oldMember, newMember) => {
-    const sendChannel = newMember.guild.channels.cache.find((ch) => ch.name === `${Action.INCIDENT}`);
+module.exports = async (client, oldMember, newMember) => {
+    const sendChannel = newMember.guild.channels.cache.find((channel) => channel.name === `${Actions.INCIDENT}`);
 
     if (oldMember.nickname !== newMember.nickname) {
         const nicknameEmbed = new MessageEmbed()

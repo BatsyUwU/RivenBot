@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const { Colors, Emotes } = require("../../../utils/configs/settings");
+const { Colors } = require("../../../utils/configs/settings");
 const { stripIndents } = require("common-tags");
 const moment = require("moment");
 
@@ -13,7 +13,7 @@ module.exports = {
         example: "",
         accessableby: "Members"
     },
-    run: async (bot, message) => {
+    run: async (client, message) => {
         let region = {
             "brazil": ":flag_br: Brazil",
             "europe": ":flag_eu: Europe",

@@ -11,7 +11,7 @@ module.exports = {
         example: "send image",
         accessableby: "Owner"
     },
-    run: async (bot, message, args) => {
+    run: async (client, message, args) => {
         if (message.deletable) {
             message.delete();
         }
@@ -24,7 +24,7 @@ module.exports = {
             return Errors.wrongText(message, "Please provide me with a valid link to set my avatar.");
         }
 
-        bot.user.setAvatar(args.join(" "));
+        client.user.setAvatar(args.join(" "));
 
         message.channel.send("Profile photo has been changed!").then((m) => m.delete({ timeout: 5000 }));
     }
