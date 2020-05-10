@@ -7,7 +7,7 @@ module.exports = {
     config: {
         name: "timezones",
         aliases: ["times", "worldtimes", "now"],
-        category: "utilities",
+        category: "miscellaneous",
         description: "Returns a list of current times in popular timezones.",
         usage: "",
         example: "",
