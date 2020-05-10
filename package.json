@@ -34,6 +34,7 @@
     "moment-duration-format": "^2.3.2",
     "moment-timezone": "^0.5.28",
     "ms": "^2.1.2",
+    "nekos.life": "^2.0.7",
     "node-fetch": "^2.6.0",
     "node-os-utils": "^1.2.2",
     "novelcovid": "^1.2.7",

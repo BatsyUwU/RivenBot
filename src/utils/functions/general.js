@@ -41,6 +41,9 @@ module.exports = {
                 
             case "moderation":
                 return message.member.permissions.toArray().join(" ").includes("MANAGE_");
+
+            case "nsfw":
+		        return !(message.channel.topic ? message.channel.topic.toLowerCase().includes('[no-nsfw]') : false) && message.channel.nsfw;
             
             default:
                 return true;

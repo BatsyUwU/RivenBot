@@ -21,7 +21,7 @@ module.exports = (bot) => {
             }
         }
     };
-    ["administrator", "fun", "miscellaneous", "moderation", "information", "owner", "searches", "utilities"].forEach((x) => load(x));
+    ["administrator", "fun", "miscellaneous", "moderation", "nsfw", "information", "owner", "searches", "utilities"].forEach((x) => load(x));
 
     console.log(table.toString());
 };
