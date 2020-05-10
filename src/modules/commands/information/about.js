@@ -38,6 +38,7 @@ module.exports = {
             **❯ Version:** v${version}
             **❯ Node:** [${process.version}](https://nodejs.org/)
             **❯ Library:** [Discord.js v${discordVersion}](https://discord.js.org/)
+            **❯ Invitation Link:** [Invite ${bot.user.username}](https://discordapp.com/oauth2/authorize?&client_id=${bot.user.id}&scope=bot&permissions=805314622) | [Support Server](https://discord.gg/GG69j8w)
             **❯ Discord Join Date:** ${moment(bot.user.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`)
             .addField("Statistics", stripIndents`**❯ Guild Count:** ${bot.guilds.cache.size}
             **❯ Member Count:** ${bot.users.cache.size}
