@@ -38,6 +38,7 @@ module.exports = {
             });
 
             let diduknow = [
+                `in any text channel, you can include \`[NO-NSFW]\` in the channel topic, so every NSFW command is not executable!`,
                 `commands usually have aliases? Just execute the command \`${Client.PREFIX}help <command>\` to check them!`,
                 "most of the people don't read the helpful tricks that are here?"
             ];
