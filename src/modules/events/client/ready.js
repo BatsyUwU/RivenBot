@@ -6,7 +6,7 @@ module.exports = (client) => {
 
     setInterval(function() {
         let activity = `${Clients.PREFIX}help | ${activities[Math.floor(Math.random() * activities.length)]}`;
-        client.user.setActivity(activity, {type: "LISTENING"}); //PLAYING, LISTENING, WATCHING, STREAMING
+        client.user.setActivity(activity, {type: "PLAYING"}); //PLAYING, LISTENING, WATCHING, STREAMING
 
-    }, 600000);
+    }, 300000);
 };

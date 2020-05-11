@@ -27,7 +27,10 @@
     "common-tags": "^1.8.0",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
+    "ffmpeg": "0.0.4",
+    "ffmpeg-static": "^4.2.1",
     "geo-tz": "^5.1.0",
+    "he": "^1.2.0",
     "imdb-api": "^4.0.3",
     "mal-scraper": "^2.6.8",
     "mathjs": "^6.6.5",
@@ -41,9 +44,7 @@
     "novelcovid": "^1.2.7",
     "openweather-apis": "^4.3.1",
     "os": "^0.1.1",
-    "ytdl-core": "^2.1.2",
-    "ytdl-core-discord": "^1.2.0",
-    "ytpl": "^0.1.21",
-    "ytsr": "^0.1.13"
+    "simple-youtube-api": "^5.2.1",
+    "ytdl-core": "^2.1.2"
   }
 }

@@ -1,9 +1,8 @@
-const { MessageEmbed } = require("discord.js");
-const { Colors } = require("../../../utils/configs/settings");
-const { play } = require("../../../utils/functions/music");
-const ytdl = require("ytdl-core");
-const ytsr = require("ytsr");
-const ytpl = require("ytpl");
+const { MessageEmbed, Util } = require("discord.js");
+const { Access, Colors } = require("../../../utils/configs/settings");
+const { handleVideo } = require("../../../utils/functions/MusicHandling");
+const ytapi = require("simple-youtube-api"); 
+const youtube = new ytapi(Access.YOUTUBE); 
 
 module.exports = {
     config: {
@@ -16,127 +15,49 @@ module.exports = {
         accessableby: "Members"
     },
     run: async(client, message, args) => {
-        if(!args.length){
-            return message.channel.send("**You have to search for a song!**");
+        if (!args.length) {
+            return message.channel.send("You have to search for a song!");
         }
-          
-        const { channel } = message.member.voice;
-
-        if(!channel){
-            return message.channel.send("**You need to be in a voice channel to play a song!**");
+        const voiceChannel = message.member.voice.channel;
+        if (!voiceChannel) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("You must be in a voice channel first!")
+            return message.channel.send(embed);
         }
-      
-        const targetsong = args.join(" ");
-      
-        const serverQueue = message.client.queue.get(message.guild.id);
-      
-        const queueConstruct = {
-            textChannel: message.channel,
-            channel,
-            connection: null,
-            songs: [],
-            loop: false,
-            volume: 100,
-            playing: true
-        };
-      
-        let songData = null;
-        let song = null;
-      
-        if(ytdl.validateURL(args[0])){
-            try{
-                songData = await ytdl.getInfo(args[0]);
-                song = {
-                    title: songData.title,
-                    url: songData.video_url,
-                    duration: songData.length_seconds
-                };
-
-                if(serverQueue){
-                    serverQueue.songs.push(song);
-                    let embed = new MessageEmbed()
-                        .setColor(Colors.NAVY)
-                        .setTitle(":musical_note: Song Request :musical_note:")
-                        .setDescription(`[${song.title}](${song.url}) added to queue!`)
-                        .setFooter(`© ${message.guild.me.displayName}`, client.user.displayAvatarURL());
-        
-                    message.channel.send(embed).catch(console.error);
-                } else{
-                    queueConstruct.songs.push(song);
+        const url = args[0] ? args[0].replace(/<(.+)>/g, "$1") : "";
+        const permissions = voiceChannel.permissionsFor(client.user).toArray();
+        if (!permissions.includes("CONNECT")) return message.channel.send("I cannot connect to your voice channel, make sure I have the proper permissions!");
+        if (!permissions.includes("SPEAK")) return message.channel.send("I cannot speak in this voice channel, make sure I have the proper permissions!");
+        if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+            const playlist = await youtube.getPlaylist(url);
+            const videos = await playlist.getVideos();
+            for (const video of Object.values(videos)) {
+                const video2 = await youtube.getVideoByID(video.id);
+                await handleVideo(video2, message, voiceChannel, true);
+            }
+            const embed = new MessageEmbed()
+                .setAuthor("✅ Playlist added!")
+                .setDescription(`Playlist: **${Util.escapeMarkdown(playlist.title)}** has been added to the queue!`)
+                .setColor(Colors.GOLD);
+            message.channel.send(embed);
+        } else {
+            let video;
+            try {
+                video = await youtube.getVideo(url);
+            } catch (error) {
+                const videos = await youtube.searchVideos(args.join(" "), 1);
+                if (!videos.length) {
+                    const embed = new MessageEmbed()
+                        .setColor(Colors.GOLD)
+                        .setTitle("❌ Error")
+                        .setDescription(`No songs found with the search term: ${args.join(" ")}.`)
+                    return message.channel.send(embed);
                 }
-            } catch(error){
-                console.error(error);
+                video = await youtube.getVideoByID(videos[0].id);   
             }
-        } else if(ytpl.validateURL(args[0])){
-            try{
-                const playlistID = await ytpl.getPlaylistID(args[0]);
-                const results = await ytpl(playlistID);
-                for(let i = 0; i < results.items.length; i++){
-                    songData = await ytdl.getInfo(results.items[i].url_simple);
-                    song = {
-                        title: songData.title,
-                        url: songData.video_url,
-                        duration: songData.length_seconds
-                    };
-                    if(serverQueue){
-                        serverQueue.songs.push(song);
-                        
-                    } else{
-                        queueConstruct.songs.push(song);
-                    }
-                }
-
-                let embed = new MessageEmbed()
-                    .setColor(Colors.NAVY)
-                    .setTitle(":musical_note: Playlist Request :musical_note:")
-                    .setDescription(`[${results.title}](${results.url}) added to queue!`)
-                    .addField("Songs", `${results.total_items}`, true)
-                    .setFooter(`© ${message.guild.me.displayName}`, client.user.displayAvatarURL());
-            
-                message.channel.send(embed).catch(console.error);
-            } catch(error){
-                console.log(error)
-            }
-        } else{
-            try{
-                let options = { limit: 1 }
-                const result = await ytsr(targetsong, options);
-                songData = await ytdl.getInfo(result.items[0].link);
-                song = {
-                    title: songData.title,
-                    url: songData.video_url,
-                    duration: songData.length_seconds
-                };
-
-                if(serverQueue){
-                    serverQueue.songs.push(song);
-                    let embed = new MessageEmbed()
-                        .setColor(Colors.NAVY)
-                        .setTitle(":musical_note: Song Request :musical_note:")
-                        .setDescription(`[${song.title}](${song.url}) added to queue!`)
-                        .setFooter(`© ${message.guild.me.displayName}`, client.user.displayAvatarURL());
-        
-                    message.channel.send(embed).catch(console.error);
-                } else{
-                    queueConstruct.songs.push(song);
-                }
-            } catch(error){
-                console.error(error);
-            }
-        }
-          
-        if(!serverQueue) message.client.queue.set(message.guild.id, queueConstruct);
-          
-        if(!serverQueue){
-            try{
-                queueConstruct.connection = await channel.join();
-                play(queueConstruct.songs[0], message);
-            } catch(error){
-                console.error(`Could not join voice channel: ${error}`);
-                message.client.queue.delete(message.guild.id);
-                await channel.leave();
-                return message.channel.send({embed: {"description": `Unable to join voice channel: ${error}`, "color": "#ff2050"}}).catch(console.error);
-            }
+            return handleVideo(video, message, voiceChannel);
         }
     }
 };

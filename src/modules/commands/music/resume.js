@@ -1,3 +1,6 @@
+const { MessageEmbed } = require("discord.js");
+const { Colors } = require("../../../utils/configs/settings");
+
 module.exports = {
     config: {
         name: "resume",
@@ -9,21 +12,35 @@ module.exports = {
         accessableby: "Members",
     },
     run: async(client, message, args) => {
-        const { channel } = message.member.voice;
-
-        if(!channel){
-            return message.channel.send("**You have to be in a voice channel to resume the music.**");
+        const voiceChannel = message.member.voice.channel;
+        if (!voiceChannel) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("You must be in a voice channel first!")
+            return message.channel.send(embed);
         }
-
-        const serverQueue = message.client.queue.get(message.guild.id);
-
-        if(serverQueue && !serverQueue.playing){
-            serverQueue.playing = true;
-            serverQueue.connection.dispatcher.resume();
-        
-            return message.channel.send(":play_pause: **Resuming**");
+        if (!message.client.playlists.has(message.guild.id)) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("There is nothing playing!")
+            return message.channel.send(embed);
         }
-    
-        message.channel.send("**There is nothing in the queue.**")
+        const thisPlaylist = message.client.playlists.get(message.guild.id);
+        if (thisPlaylist.playing) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("The song isn\"t paused!")
+            return message.channel.send(embed);
+        }
+        thisPlaylist.playing = true;
+        thisPlaylist.connection.dispatcher.resume();
+        const embed = new MessageEmbed()
+            .setColor(Colors.GOLD)
+            .setTitle("▶ Resumed")
+            .setDescription(`The song has been resume by ${message.member.displayName}.`)
+        return message.channel.send(embed);
     }
 };

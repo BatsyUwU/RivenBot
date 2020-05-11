@@ -12,24 +12,33 @@ module.exports = {
         accessableby: "Members",
     },
     run: async(client, message, args) => {
-        const { channel } = message.member.voice;
-
-        if(!channel){
-            return message.channel.send("**You have to be in a voice channel to view the queue.**");
+        const voiceChannel = message.member.voice.channel;
+        if (!voiceChannel) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("You must be in a voice channel first!")
+            return message.channel.send(embed);
         }
-
-        const serverQueue = message.client.queue.get(message.guild.id);
-
-        if(!serverQueue){
-            return message.channel.send("**The queue is empty.**");
+        if (!message.client.playlists.has(message.guild.id)) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("There is nothing playing!")
+            return message.channel.send(embed);
         }
-
-        let embed = new MessageEmbed()
-            .setColor(Colors.NAVY)
-            .setTitle("Music Queue")
-            .setDescription(`${serverQueue.songs.map((song, index) => index + 1 + ". " + `[${song.title}](${song.url})`).join("\n\n")}`,{ split: true })
-            .setFooter(`© ${message.guild.me.displayName}`, client.user.displayAvatarURL());
-
-        message.channel.send(embed);
+        let idx = 0;
+        let out = message.client.playlists.get(message.guild.id).songs.map(song => `**${++idx}.** ${song.title}`).join("\n");
+        if (out.length > 2048) {
+            const { body } = post("https://www.hastebin.com/documents").send(out);
+            message.channel.send(`Queue was too long, uploaded it to hastebin: https://www.hastebin.com/${body.key}.txt`);
+        } else {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("📃 Queue")
+                .setDescription(out)
+                .addField("Now playing", message.client.playlists.get(message.guild.id).songs[0].title)
+            return message.channel.send(embed);
+        }
     }
 };

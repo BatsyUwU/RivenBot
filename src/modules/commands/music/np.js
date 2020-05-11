@@ -1,5 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const { Colors } = require("../../../utils/configs/settings");
+const moment = require("moment");
+require("moment-duration-format");
 
 module.exports = {
     config: {
@@ -12,25 +14,26 @@ module.exports = {
         accessableby: "Members",
     },
     run: async(client, message, args) => {
-        const { channel } = message.member.voice;
-
-        if(!channel){
-            return message.channel.send("**You have to be in a voice channel to view the current song.** :x:");
+        const voiceChannel = message.member.voice.channel;
+        if (!voiceChannel) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("You must be in a voice channel first!")
+            return message.channel.send(embed);
         }
-
-        const serverQueue = message.client.queue.get(message.guild.id);
-
-        if(!serverQueue){
-            return message.channel.send("**Nothing playing.**");
+        if (!message.client.playlists.has(message.guild.id)) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("There is nothing playing!")
+            return message.channel.send(embed);
         }
-        
-        let embed = new MessageEmbed()
-            .setColor(Colors.NAVY)
-            .setTitle(":musical_note: **Now Playing** :musical_note:")
-            .setDescription(`[${serverQueue.songs[0].title}](${serverQueue.songs[0].url})`)
-            .addField("Duration", `${serverQueue.songs[0].duration}`, true)
-            .setFooter(`© ${message.guild.me.displayName}`, client.user.displayAvatarURL());
-
-        message.channel.send(embed);
+        const playingFor = message.client.playlists.get(message.guild.id).connection.dispatcher.time;
+        const embed = new MessageEmbed()
+            .setColor(Colors.GOLD)
+            .setTitle("▶️ Now Playing")
+            .setDescription(`**${message.client.playlists.get(message.guild.id).songs[0].title}**\nHas been playing for **${moment.duration(playingFor).format("H [hrs], m [mins], s [secs]")}**`)
+        return message.channel.send(embed);
     }
 };

@@ -1,3 +1,6 @@
+const { MessageEmbed } = require("discord.js");
+const { Colors } = require("../../../utils/configs/settings");
+
 module.exports = {
     config: {
         name: "pause",
@@ -9,23 +12,35 @@ module.exports = {
         accessableby: "Members",
     },
     run: async(client, message, args) => {
-        const { channel } = message.member.voice;
-
-        if(!channel){
-            return message.channel.send("**You need to be in a voice channel to pause a song.** :x:");
+        const voiceChannel = message.member.voice.channel;
+        if (!voiceChannel) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("You must be in a voice channel first!")
+            return message.channel.send(embed);
         }
-
-        const serverQueue = message.client.queue.get(message.guild.id);
-
-        if(!serverQueue){
-            return message.channel.send("**There is nothing playing.**");
+        if (!message.client.playlists.has(message.guild.id)) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("There is nothing playing!")
+            return message.channel.send(embed);
         }
-        
-        if(serverQueue && serverQueue.playing){
-            serverQueue.playing = false;
-            serverQueue.connection.dispatcher.pause(true);
-        }
-
-        return message.channel.send(":pause_button: **Paused**");
+        const playlist = message.client.playlists.get(message.guild.id);
+        if (!playlist.playing) {
+            const embed = new MessageEmbed()
+                .setColor(Colors.GOLD)
+                .setTitle("❌ Error")
+                .setDescription("The song is already paused!")
+            return message.channel.send(embed);
+        }  
+        playlist.playing = false;
+        playlist.connection.dispatcher.pause();
+        const embed = new MessageEmbed()
+            .setColor(Colors.GOLD)
+            .setTitle("⏸️ Paused")
+            .setDescription(`The song has been paused by ${message.member.displayName}.`)
+        return message.channel.send(embed);
     }
 };
