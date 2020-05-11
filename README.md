@@ -1,33 +1,33 @@
-<h1 align="center">Akira Bot</h1>
+<h1 align="center">Riven Bot</h1>
 
 <p align="center">
 <a>
     <img src="https://img.shields.io/badge/Built%20With-%E2%9D%A4-%23C13A3A?&style=for-the-badge" alt="Support">
 </a>
-<a href="https://travis-ci.com/XRzky/AkiraBot">
-    <img src="https://img.shields.io/travis/com/XRzky/AkiraBot/beta.svg?style=for-the-badge" alt="Build">
+<a href="https://travis-ci.com/XRzky/RivenBot">
+    <img src="https://img.shields.io/travis/com/XRzky/RivenBot/beta.svg?style=for-the-badge" alt="Build">
 </a>
 <a>
-    <img src="https://img.shields.io/github/languages/top/XRzky/AkiraBot.svg?color=f0db4f&style=for-the-badge" alt="Languages">
+    <img src="https://img.shields.io/github/languages/top/XRzky/RivenBot.svg?color=f0db4f&style=for-the-badge" alt="Languages">
 </a>
 <a>
-    <img src="https://img.shields.io/github/license/XRzky/AkiraBot?color=blue&style=for-the-badge" alt="License">
+    <img src="https://img.shields.io/github/license/XRzky/RivenBot?color=blue&style=for-the-badge" alt="License">
 </a>
 <br>
-<a href="https://github.com/XRzky/AkiraBot/tree/beta">
-    <img src="https://img.shields.io/github/package-json/v/XRzky/AkiraBot/beta.svg?label=Version&style=for-the-badge" alt="Version">
+<a href="https://github.com/XRzky/RivenBot/tree/beta">
+    <img src="https://img.shields.io/github/package-json/v/XRzky/RivenBot/beta.svg?label=Version&style=for-the-badge" alt="Version">
 </a>
-<a href="https://github.com/XRzky/AkiraBot/issues">
-    <img src="https://img.shields.io/github/issues/XRzky/AkiraBot.svg?color=37f149&style=for-the-badge" alt="Issues">
+<a href="https://github.com/XRzky/RivenBot/issues">
+    <img src="https://img.shields.io/github/issues/XRzky/RivenBot.svg?color=37f149&style=for-the-badge" alt="Issues">
 </a>
-<a href="https://github.com/XRzky/AkiraBot/pulls">
-    <img src="https://img.shields.io/github/issues-pr/XRzky/AkiraBot.svg?color=37f149&style=for-the-badge" alt="Pull Request">
+<a href="https://github.com/XRzky/RivenBot/pulls">
+    <img src="https://img.shields.io/github/issues-pr/XRzky/RivenBot.svg?color=37f149&style=for-the-badge" alt="Pull Request">
 </a>
 </p>
 
 ---
 
-<i>Akira is a Multipurpose Discord bot that is intended to be able to perform various tasks, ranging from simple server
+<i>Riven is a Multipurpose Discord bot that is intended to be able to perform various tasks, ranging from simple server
 moderation (ban, kick, etc.) to other functions such as the ability to search, weather forecasts, and many more in 
 upcoming updates.
 
@@ -48,7 +48,7 @@ using the [Discord.js](https://discord.js.org/#/) library.
 ## Installation
 ```dosini
 # Clone this repository
-$ git clone -b beta https://github.com/XRzky/AkiraBot.git
+$ git clone -b beta https://github.com/XRzky/RivenBot.git
 
 # Install Node dependencies
 $ npm install
@@ -77,5 +77,5 @@ YOUTUBE_API_KEY=Input here your YouTube API. Otherwise the youtube command does 
 
 ## Contributing
 If you want to contribute to this project you can follow the steps below.
-Not a programmer? You can always [open an issue](https://github.com/XRzky/AkiraBot/issues/new) and share your ideas!
+Not a programmer? You can always [open an issue](https://github.com/XRzky/RivenBot/issues/new) and share your ideas!
 More information about contributing can be found [here](.github/CONTRIBUTING.md).
