@@ -5,10 +5,10 @@ const neko = new client();
 
 module.exports = {
     config: {
-        name: "smug",
+        name: "baka",
         aliases: [""],
-        category: "sfw",
-        description: "Gives you a smug!",
+        category: "action",
+        description: "Gives you a baka!",
         usage: "[mention]",
         example: "@hnxtasia",
         accessableby: "Members"
@@ -19,22 +19,22 @@ module.exports = {
         const roleColor = message.guild.me.roles.highest.hexColor;
 
         if (mention && mention !== message.author) {
-            neko.sfw.smug().then(smug => {
+            neko.sfw.baka().then(baka => {
                 const embed = new MessageEmbed()
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-                    .setDescription(`${message.author} is being smug against ${mention}.`)
-                    .setImage(smug.url)
+                    .setDescription(`${message.author} says that ${mention} is a baka.`)
+                    .setImage(baka.url)
                     .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
                     .setTimestamp();
     
                 message.channel.send(embed);
             });
         } else {
-            neko.sfw.smug().then(smug => {
+            neko.sfw.baka().then(baka => {
                 const embed = new MessageEmbed()
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-                    .setDescription(`${message.author} is looking a bit smug.`)
-                    .setImage(smug.url)
+                    .setDescription(`${message.author} is a baka.`)
+                    .setImage(baka.url)
                     .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
                     .setTimestamp();
     

@@ -5,10 +5,10 @@ const neko = new client();
 
 module.exports = {
     config: {
-        name: "hug",
+        name: "cuddle",
         aliases: [""],
-        category: "sfw",
-        description: "Gives you a hug!",
+        category: "action",
+        description: "Cuddles you!",
         usage: "[mention]",
         example: "@hnxtasia",
         accessableby: "Members"
@@ -19,22 +19,22 @@ module.exports = {
         const roleColor = message.guild.me.roles.highest.hexColor;
 
         if (mention && mention !== message.author) {
-            neko.sfw.hug().then(hug => {
+            neko.sfw.cuddle().then(cuddle => {
                 const embed = new MessageEmbed()
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-                    .setDescription(`${message.author} likes ${mention} a lot and gives him a hug.`)
-                    .setImage(hug.url)
+                    .setDescription(`${message.author} cuddles ${mention}.`)
+                    .setImage(cuddle.url)
                     .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
                     .setTimestamp();
     
                 message.channel.send(embed);
             });
         } else {
-            neko.sfw.hug().then(hug => {
+            neko.sfw.cuddle().then(cuddle => {
                 const embed = new MessageEmbed()
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-                    .setDescription(`I will hug you ${message.author}, don't worry.`)
-                    .setImage(hug.url)
+                    .setDescription(`${message.author} is getting cuddled by me.`)
+                    .setImage(cuddle.url)
                     .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
                     .setTimestamp();
     

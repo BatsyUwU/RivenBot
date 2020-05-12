@@ -5,10 +5,10 @@ const neko = new client();
 
 module.exports = {
     config: {
-        name: "slap",
+        name: "tickle",
         aliases: [""],
-        category: "sfw",
-        description: "Gives you a slap!",
+        category: "action",
+        description: "Gives you a tickle!",
         usage: "[mention]",
         example: "@hnxtasia",
         accessableby: "Members"
@@ -19,22 +19,22 @@ module.exports = {
         const roleColor = message.guild.me.roles.highest.hexColor;
 
         if (mention && mention !== message.author) {
-            neko.sfw.slap().then(slap => {
+            neko.sfw.tickle().then(tickle => {
                 const embed = new MessageEmbed()
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-                    .setDescription(`${message.author} just slapped ${mention}.`)
-                    .setImage(slap.url)
+                    .setDescription(`${message.author} just tickled ${mention}.`)
+                    .setImage(tickle.url)
                     .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
                     .setTimestamp();
     
                 message.channel.send(embed);
             });
         } else {
-            neko.sfw.slap().then(slap => {
+            neko.sfw.tickle().then(tickle => {
                 const embed = new MessageEmbed()
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-                    .setDescription(`${message.author} just slapped himself.`)
-                    .setImage(slap.url)
+                    .setDescription(`${message.author} has been tickled by me.`)
+                    .setImage(tickle.url)
                     .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
                     .setTimestamp();
     

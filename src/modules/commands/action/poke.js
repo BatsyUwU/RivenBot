@@ -7,7 +7,7 @@ module.exports = {
     config: {
         name: "poke",
         aliases: [""],
-        category: "sfw",
+        category: "action",
         description: "Gives you a poke!",
         usage: "[mention]",
         example: "@hnxtasia",

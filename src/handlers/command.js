@@ -21,6 +21,6 @@ module.exports = (client) => {
 			}
 		}
 	};
-	["administrator", "fun", "information", "miscellaneous", "moderation", "music", "nsfw", "owner", "searches", "sfw", "utilities"].forEach((x) => load(x));
+	["action", "administrator", "fun", "information", "miscellaneous", "moderation", "music", "nsfw", "owner", "searches", "utilities"].forEach((x) => load(x));
 	console.log(table.toString());
 };

@@ -5,10 +5,10 @@ const neko = new client();
 
 module.exports = {
     config: {
-        name: "kiss",
+        name: "hug",
         aliases: [""],
-        category: "sfw",
-        description: "Gives you a kiss!",
+        category: "action",
+        description: "Gives you a hug!",
         usage: "[mention]",
         example: "@hnxtasia",
         accessableby: "Members"
@@ -19,22 +19,22 @@ module.exports = {
         const roleColor = message.guild.me.roles.highest.hexColor;
 
         if (mention && mention !== message.author) {
-            neko.sfw.kiss().then(kiss => {
+            neko.sfw.hug().then(hug => {
                 const embed = new MessageEmbed()
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-                    .setDescription(`${message.author} just kissed ${mention}.`)
-                    .setImage(kiss.url)
+                    .setDescription(`${message.author} likes ${mention} a lot and gives him a hug.`)
+                    .setImage(hug.url)
                     .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
                     .setTimestamp();
     
                 message.channel.send(embed);
             });
         } else {
-            neko.sfw.kiss().then(kiss => {
+            neko.sfw.hug().then(hug => {
                 const embed = new MessageEmbed()
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
-                    .setDescription(`${message.author} just kissed himself.`)
-                    .setImage(kiss.url)
+                    .setDescription(`I will hug you ${message.author}, don't worry.`)
+                    .setImage(hug.url)
                     .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
                     .setTimestamp();
     
