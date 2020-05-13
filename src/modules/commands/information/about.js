@@ -31,19 +31,15 @@ module.exports = {
             .setTitle(`__Information About ${client.user.username}__`)
             .setDescription(`Hiya, I'm ${client.user.username}... I'll be your server assistant & multipurpose bot!\nYou can use \`${Clients.PREFIX}help\` to get all my commands.`)
             .setThumbnail(client.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
-            .addField("General Information", stripIndents`**❯ Username:** ${client.user.tag}
-            **❯ ID:** ${client.user.id}
-            **❯ Creator:** ${Owner.tag}
-            **❯ Status:** ${status[client.user.presence.status]}
-            **❯ Version:** v${version}
-            **❯ Node:** [${process.version}](https://nodejs.org/)
-            **❯ Library:** [Discord.js v${discordVersion}](https://discord.js.org/)
-            **❯ Invitation Link:** [Invite ${client.user.username}](https://discordapp.com/oauth2/authorize?&client_id=${client.user.id}&scope=bot&permissions=805314622) | [Support Server](https://discord.gg/GG69j8w)
-            **❯ Discord Join Date:** ${moment(client.user.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`)
-            .addField("Statistics", stripIndents`**❯ Guild Count:** ${client.guilds.cache.size}
-            **❯ Member Count:** ${client.users.cache.size}
-            **❯ Channels Count:** ${client.channels.cache.size}
-            **❯ Command Count:** ${client.commands.size}`)
+            .addField("__**Detail Information**__", stripIndents`
+                • **Username:** ${client.user.tag}
+                • **ID:** ${client.user.id}
+                • **Creator:** ${Owner.tag}
+                • **Status:** ${status[client.user.presence.status]}
+                • **Version:** v${version}
+                • **Node:** [${process.version}](https://nodejs.org/)
+                • **Library:** [Discord.js v${discordVersion}](https://discord.js.org/)
+                • **Created at:** ${moment(client.user.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`)
             .setFooter(`Based on ${client.user.username} | Powered by Heroku`, client.user.displayAvatarURL({ dynamic: true }))
             .setTimestamp();
 

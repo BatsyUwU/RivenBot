@@ -40,8 +40,8 @@ module.exports = {
 
         const contentFilterLevels = {
             "DISABLED": "None",
-            "MEMBERS_WITHOUT_ROLES": "Medium",
-            "ALL_MEMBERS": "High"
+            "MEMBERS_WITHOUT_ROLES": "Scan messages from those without a role",
+            "ALL_MEMBERS": "Scan all messages"
         };
         
         const roleColor = message.guild.me.roles.highest.hexColor;
@@ -50,27 +50,24 @@ module.exports = {
             .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
             .setAuthor(`Server Information for ${message.guild.name}`, message.guild.iconURL({ dynamic: true }))
             .setThumbnail(message.guild.iconURL({ format: "png", dynamic: true, size: 4096 }))
-            .addField("❯ Details", stripIndents`
+            .addField("__**Details**__", stripIndents`
                 • **ID:** ${message.guild.id}
                 • **Created:** ${moment(message.guild.createdAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}
                 • **Owner:** ${message.guild.owner.user.tag}
                 • **Region:** ${region[message.guild.region]}
-                • **Verification:** ${verificationLevels[message.guild.verificationLevel]}`)
-            .addField("❯ Channels", stripIndents`
+                • **Verification:** ${verificationLevels[message.guild.verificationLevel]}
+                • **Content filter:** ${contentFilterLevels[message.guild.explicitContentFilter]}`)
+            .addField("__**Channels**__", stripIndents`
                 • **Categories:** ${message.guild.channels.cache.filter((ch) => ch.type === "category").size}
                 • **Text:** ${message.guild.channels.cache.filter((ch) => ch.type === "text").size}
                 • **Voice:** ${message.guild.channels.cache.filter((ch) => ch.type === "voice").size}
                 • **AFK:** ${message.guild.afkChannel ? message.guild.afkChannel.name : "None"}`, true)
-            .addField("❯ Users", stripIndents`
+            .addField("__**Users**__", stripIndents`
                 • **Humans:** ${message.guild.memberCount - message.guild.members.cache.filter((m) => m.user.bot).size}
                 • **Bots:** ${message.guild.members.cache.filter((m) => m.user.bot).size}
                 • **Members:** ${message.guild.memberCount}`, true)
-            .addField("❯ Other", stripIndents`
-                • **AFK:** After ${message.guild.afkTimeout / 60} min
-                • **Large?** ${message.guild.large.toString()}
-                • **Content filter:** ${contentFilterLevels[message.guild.explicitContentFilter]}`, true)
-            .addField(`❯ Roles [${message.guild.roles.cache.filter((f) => f.name !== "@everyone").size}]`, stripIndents`
-                • **List:** ${message.guild.roles.cache.sort((a, b) => b.position - a.position).filter((f) => f.name !== "@everyone").map((r) => r.name).join(", ")}`)
+            .addField(`__**Roles [${message.guild.roles.cache.filter((f) => f.name !== "@everyone").size}]**__`, stripIndents`
+                ${message.guild.roles.cache.sort((a, b) => b.position - a.position).filter((f) => f.name !== "@everyone").map((r) => r.name).join(", ")}`)
             .setFooter(`Requested by ${message.author.tag}`, message.author.avatarURL({ dynamic: true }))
             .setTimestamp();
 
