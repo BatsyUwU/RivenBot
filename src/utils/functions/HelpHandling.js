@@ -18,6 +18,10 @@ module.exports = {
             default:
                 return true;
         }
+
+        function checkOwner(id) {
+            return process.env.OWNER_ID.includes(id);
+        }
     },
     checkOwner: function(id) {
         return process.env.OWNER_ID.includes(id);
