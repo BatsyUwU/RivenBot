@@ -11,7 +11,7 @@ module.exports = {
         name: "stats",
         aliases: ["specs"],
         category: "information",
-        description: "Displays the bots staticics!",
+        description: "Displays the bots statistics!",
         usage: "",
         example: "",
         accessableby: "Members"
