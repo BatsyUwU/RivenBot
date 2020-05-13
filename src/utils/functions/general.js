@@ -39,32 +39,5 @@ module.exports = {
         return message
             .awaitReactions(filter, { max: 1, time: time})
             .then(collected => collected.first() && collected.first().emoji.name);
-    },
-    categoryCheck: function(category, message) {
-        category = category.toLowerCase();
-
-        switch (category) {
-            case "owner":
-                return checkOwner(message.author.id);
-    
-            case "administrator":
-                return message.member.permissions.toArray().join(" ").includes("ADMINISTRATOR");
-                
-            case "moderation":
-                return message.member.permissions.toArray().join(" ").includes("MANAGE_");
-
-            case "nsfw":
-		        return !(message.channel.topic ? message.channel.topic.toLowerCase().includes('[no-nsfw]') : false) && message.channel.nsfw;
-            
-            default:
-                return true;
-        }
-
-        function checkOwner(id) {
-            return process.env.OWNER_ID.includes(id);
-        }
-    },
-    checkOwner: function(id) {
-        return process.env.OWNER_ID.includes(id);
     }
 };

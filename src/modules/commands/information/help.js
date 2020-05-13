@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const { readdirSync } = require("fs");
 const { Clients, Colors } = require("../../../utils/configs/settings");
-const { categoryCheck, checkOwner } = require("../../../utils/functions/general");
+const { categoryCheck, checkOwner } = require("../../../utils/functions/HelpHandling");
 const { stripIndents } = require("common-tags");
 
 module.exports = {
