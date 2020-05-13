@@ -44,21 +44,19 @@ module.exports = {
             .setAuthor(`${client.user.username}'s statistics information`, client.user.avatarURL({ dynamic: true }))
             .setDescription("Here are some stats about the bot and other stuff")
             .setThumbnail(client.user.displayAvatarURL({ format: "png", dynamic: true, size: 4096 }))
-            .addField("Used", stripIndents`
+            .addField("__**Performance**__", stripIndents`
                 RAM: ${diagramMaker(usedRAM, freeRAM)} [${Math.round(100 * usedRAM / (usedRAM + freeRAM))}%]
                 CPU: ${diagramMaker(cpuUsage, 100-cpuUsage)} [${Math.round(cpuUsage)}%]`, false)
-            .addField("Machine", stripIndents`
-                CPU Cores: ${osu.cpu.count()} Cores
-                CPU Model: ${os.cpus()[0].model}
-                CPU Speed: ${os.cpus()[0].speed}MHz
-                Total RAM: ${Math.round(os.totalmem / 1000000000)}GBs`, false)
-            .addField("Operation System", `${os.type} ${os.release} ${os.arch}`, false)
-            .addField("Total Users", client.users.cache.size, true)
-            .addField("Total Emotes", client.emojis.cache.size, true)
-            .addField("Total Guilds", client.guilds.cache.size, true)
-            .addField("Bot Uptime", moment.duration(client.uptime).format("D [days], H [hrs], m [mins], s [secs]"), true)
-            .addField("Host Uptime", moment.duration(os.uptime*1000).format("D [days], H [hrs], m [mins], s [secs]"), true)
-            .setFooter(`Requested by ${message.author.tag} | Powered by Heroku | Last started on ${moment(client.readyAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`, message.author.avatarURL({ dynamic: true }));
+            .addField("__**System**__", stripIndents`
+                Processor: ${os.cpus()[0].model} (${osu.cpu.count()} Cores)
+                Total RAM: ${(usedRAM / 1024 / 1024 / 1024).toFixed(2)} GB / ${(os.totalmem() / 1024 / 1024 / 1024).toFixed(2)} GB`, false)
+            .addField("__**Operation System**__", `${os.type} ${os.release} ${os.arch}`, false)
+            .addField("__**Total Users**__", client.users.cache.size, true)
+            .addField("__**Total Emotes**__", client.emojis.cache.size, true)
+            .addField("__**Total Guilds**__", client.guilds.cache.size, true)
+            .addField("__**Bot Uptime**__", moment.duration(client.uptime).format("D [days], H [hrs], m [mins], s [secs]"), true)
+            .addField("__**Host Uptime**__", moment.duration(os.uptime*1000).format("D [days], H [hrs], m [mins], s [secs]"), true)
+            .setFooter(`Powered by Heroku | Last started on ${moment(client.readyAt).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`);
 
         message.channel.send(statsEmbed);
     }
