@@ -1,6 +1,6 @@
 {
   "name": "riven",
-  "version": "2.2.1-beta",
+  "version": "2.2.2-beta",
   "description": "Management Server",
   "main": "bot.js",
   "scripts": {
