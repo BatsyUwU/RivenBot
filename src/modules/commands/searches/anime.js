@@ -20,7 +20,7 @@ module.exports = {
         malScraper.getInfoFromName(search).then(data => {
             const animeEmbed = new MessageEmbed()
                 .setColor(Colors.MAL)
-                .setAuthor("My Anime List Search Engine", "https://i.imgur.com/QABhOrL.png", "https://myanimelist.net/")
+                .setAuthor("MyAnimeList Search Engine", "https://i.imgur.com/QABhOrL.png", "https://myanimelist.net/")
                 .setTitle(data.title)
                 .setURL(data.url)
                 .setThumbnail(data.picture)
@@ -39,7 +39,7 @@ module.exports = {
                 .addField("Aired", data.aired, true)
                 .addField("Broadcast", data.broadcast, true)
                 .addField("Score", `${data.score} (${data.scoreStats})`, false)
-                .setFooter(`Requested by ${message.author.tag} | Powered by My Anime List`, message.author.avatarURL({ dynamic: true }))
+                .setFooter("Powered by MyAnimeList")
                 .setTimestamp();
             
             message.channel.send(animeEmbed);

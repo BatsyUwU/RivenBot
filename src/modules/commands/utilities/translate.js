@@ -26,7 +26,7 @@ module.exports = {
                 .setAuthor("Google Translate Engine", "https://i.imgur.com/1JS81kv.png", "https://translate.google.com/")
                 .setTitle("Available Languages")
                 .setDescription(`\`\`\`JSON\n${JSON.stringify(Languages).split(",").join(",\n")}\`\`\``)
-                .setFooter(`Requested by ${message.author.tag} | Powered by Google Translate`, message.author.avatarURL({ dynamic: true }))
+                .setFooter("Powered by Google Translate")
                 .setTimestamp();
 
             return message.channel.send(langEmbed).then((m) => m.delete({ timeout: 60000 }));
@@ -52,13 +52,13 @@ module.exports = {
             translate(text.toLowerCase(), {from: fromArg, to: toArg}).then((res) => {
                 const tranlateEmbed = new MessageEmbed()
                     .setColor(Colors.G_TRANSLATE)
-                    .setAuthor("Google Translate Engine", "https://cdn.discordapp.com/attachments/646882466333851672/702744617468035112/translate-round.png", "https://translate.google.com/")
+                    .setAuthor("Google Translate Engine", "https://i.imgur.com/1JS81kv.png", "https://translate.google.com/")
                     .setDescription(stripIndents`
                     From **${Languages[fromArg]}:**
                     ${text}\n
                     To **${Languages[toArg]}:**
                     ${res.text}`)
-                    .setFooter(`Requested by ${message.author.tag} | Powered by Google Translate`, message.author.avatarURL({ dynamic: true }))
+                    .setFooter("Powered by Google Translate")
                     .setTimestamp();
                     
                 return message.channel.send(tranlateEmbed);

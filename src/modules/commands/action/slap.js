@@ -24,7 +24,7 @@ module.exports = {
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
                     .setDescription(`${message.author} just slapped ${mention}.`)
                     .setImage(slap.url)
-                    .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
+                    .setFooter("Powered by nekos.life")
                     .setTimestamp();
     
                 message.channel.send(embed);
@@ -35,7 +35,7 @@ module.exports = {
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
                     .setDescription(`${message.author} just slapped himself.`)
                     .setImage(slap.url)
-                    .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
+                    .setFooter("Powered by nekos.life")
                     .setTimestamp();
     
                 message.channel.send(embed);

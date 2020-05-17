@@ -24,7 +24,7 @@ module.exports = {
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
                     .setDescription(`${message.author} likes Holo a lot, so ${mention} should like her in the same way.`)
                     .setImage(holo.url)
-                    .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
+                    .setFooter("Powered by nekos.life")
                     .setTimestamp();
     
                 message.channel.send(embed);
@@ -35,7 +35,7 @@ module.exports = {
                     .setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
                     .setDescription(`Have an image of Holo ${message.author}.`)
                     .setImage(holo.url)
-                    .setFooter(`Requested by ${message.author.tag} | Powered by nekos.life`, message.author.avatarURL({ dynamic: true }))
+                    .setFooter("Powered by nekos.life")
                     .setTimestamp();
     
                 message.channel.send(embed);

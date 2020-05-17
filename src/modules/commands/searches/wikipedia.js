@@ -33,7 +33,7 @@ module.exports = {
                 .setURL(article.content_urls.desktop.page)
                 .setThumbnail(article.originalimage ? article.originalimage.source : null)
                 .setDescription(article.extract)
-                .setFooter(`Requested by ${message.author.tag} | Powered by Wikipedia`, message.author.avatarURL({ dynamic: true }))
+                .setFooter("Powered by Wikipedia")
                 .setTimestamp();
 
             message.channel.send(articleEmbed);

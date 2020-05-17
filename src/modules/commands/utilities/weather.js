@@ -99,7 +99,7 @@ module.exports = {
                 .addField("🌅 Sunrise", `${moment(res.sys.sunrise*1000).tz(`${city_tz}`).format("HH:mm [GMT]Z")}`, true)
                 .addField("🌇 Sunset", `${moment(res.sys.sunset*1000).tz(`${city_tz}`).format("HH:mm [GMT]Z")}`, true)
                 .addField("⌚ Current Time", `${moment().tz(`${city_tz}`).format("ddd, DD MMMM YYYY HH:mm [GMT]Z")}`, false)
-                .setFooter(`Requested by ${message.author.tag} | Powered by OpenWeatherMap`, message.author.avatarURL({ dynamic: true }))
+                .setFooter("Powered by OpenWeatherMap")
                 .setTimestamp();
 
             message.channel.send(weatherEmbed);

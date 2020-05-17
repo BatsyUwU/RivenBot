@@ -39,7 +39,7 @@ module.exports = {
                 .addField("Posts", formatNumber(account.edge_owner_to_timeline_media.count), true)
                 .addField("Followers", formatNumber(account.edge_followed_by.count), true)
                 .addField("Following", formatNumber(account.edge_follow.count), true)
-                .setFooter("Powered by Instagram", message.author.avatarURL({ dynamic: true }))
+                .setFooter("Powered by Instagram")
                 .setTimestamp();
                 
          message.channel.send(instagramEmbed);

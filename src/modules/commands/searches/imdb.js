@@ -39,7 +39,7 @@ module.exports = {
                 .addField("Production", res.production || "Unknown", true)
                 .addField("Country", res.country, true)
                 .addField("Language", res.languages, true)
-                .setFooter(`Requested by ${message.author.tag} | Powered by IMDb`, message.author.avatarURL({ dynamic: true }))
+                .setFooter("Powered by IMDb")
                 .setTimestamp();
 
                 if (res.awards !== "N/A") {
