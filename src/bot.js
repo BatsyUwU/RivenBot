@@ -1,6 +1,6 @@
 require("dotenv").config();
-const { Client, Collection } = require("discord.js");
-const client = new Client({ partials: ["MESSAGE"] });
+const { Client, Collection, Intents } = require("discord.js");
+const client = new Client({ ws: { intents: Intents.ALL } });
 
 client.playlists = new Collection();
 
