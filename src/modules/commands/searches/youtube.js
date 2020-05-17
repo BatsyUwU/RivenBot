@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { Access, Colors } = require("../../../utils/configs/settings");
 const { stripIndents } = require("common-tags");
 const Errors = require("../../../utils/functions/errors");
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 module.exports = {
     config: {
@@ -19,7 +19,8 @@ module.exports = {
             return Errors.wrongCmd(message, "youtube");
         }
 
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=id,snippet&q=${args}&maxResults=1&type=video&key=${Access.YOUTUBE}`).then((res) => res.json()).then((search) => {
+        axios.get(`https://www.googleapis.com/youtube/v3/search?part=id,snippet&q=${args}&maxResults=1&type=video&key=${Access.YOUTUBE}`).then((res) => {
+            const search = res.data;
             try {
                 const youtubeEmbed = new MessageEmbed()
                     .setColor(Colors.YOUTUBE)
@@ -27,10 +28,10 @@ module.exports = {
                     .setTitle(search.items[0].snippet.title)
                     .setURL(`https://www.youtube.com/watch?v=${search.items[0].id.videoId}`)
                     .setDescription(stripIndents`
-                    **${search.items[0].snippet.channelTitle}**
-                    ${search.items[0].snippet.description}`)
+                        **${search.items[0].snippet.channelTitle}**
+                        ${search.items[0].snippet.description}`)
                     .setImage(search.items[0].snippet.thumbnails.high.url)
-                    .setFooter(`Requested by ${message.author.tag} | Powered by YouTube`, message.author.avatarURL({ dynamic: true }))
+                    .setFooter("Powered by YouTube")
                     .setTimestamp();
 
                 message.channel.send(youtubeEmbed);
