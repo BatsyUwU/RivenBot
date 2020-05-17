@@ -2,8 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { Colors } = require("../../../utils/configs/settings");
 const { formatNumber } = require("../../../utils/functions/general");
 const Errors = require("../../../utils/functions/errors");
-const { NovelCovid } = require("novelcovid");
-const track = new NovelCovid();
+const api = require("novelcovid");
 const moment = require("moment");
 
 module.exports = {
@@ -22,7 +21,7 @@ module.exports = {
         }
 
         if(args.join(" ") === "all") {
-            let corona = await track.all();
+            let corona = await api.all();
             
             const coronaEmbed = new MessageEmbed()
                 .setColor(Colors.CUSTOM)
@@ -41,12 +40,11 @@ module.exports = {
             
             return message.channel.send(coronaEmbed);
         } else {
-            let corona = await track.countries(args.join(" "));
+            let corona = await api.countries({country: `${args.join(" ")}`});
             
             const coronaEmbed = new MessageEmbed()
                 .setColor(Colors.CUSTOM)
                 .setTitle(`${corona.country} Cases`)
-                .setThumbnail(corona.countryInfo.flag)
                 .setDescription("Sometimes cases number may differ from small amount.")
                 .addField("Cases", formatNumber(corona.cases), true)
                 .addField("Deaths", formatNumber(corona.deaths), true)
