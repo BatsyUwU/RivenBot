@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const { Colors } = require("../../../utils/configs/settings");
 const Errors = require("../../../utils/functions/errors");
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 module.exports = {
     config: {
@@ -19,7 +19,9 @@ module.exports = {
             return Errors.wrongText(message, "Please provide query to search on Wikipedia");
         }
 
-        fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`).then((res) => res.json()).then((article) => {
+        axios.get(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(query)}`).then((res) => {
+            const article = res.data;
+
             if(!article.content_urls) {
                 return Errors.resStatus("404", message, "I couldn't find a wikipedia article with that title!");
             }
