@@ -40,7 +40,7 @@ module.exports = {
                 return Errors.wrongText(message, `Language not found. Check here to see the list of available languages \`${Client.PREFIX}translate lang\``);
             };
 
-            var text = args.join(" ").split(args[0]).pop().split(args[1])[1].trim();
+            var text = args.slice(2).join(" ");
             if (!text) {
                 return Errors.wrongText(message, "Please provide a text for me to translate.");
             };
