@@ -18,6 +18,11 @@ module.exports = {
                 .setDescription(`💢 **${message.author.tag}**, No results were found!`)
                 break;
             }
+            case "commonError": {
+                embed.setTitle("ERROR!")
+                .setDescription(`💢 **${message.author.tag}**, ${args}`);
+                break;
+            }
             default: {
                 embed.setTitle("ERROR!")
                 .setDescription(`💢 **${message.author.tag}**, Sorry, but an error has occured.`)
