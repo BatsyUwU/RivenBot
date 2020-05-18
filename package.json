@@ -33,6 +33,7 @@
     "geo-tz": "^6.0.0",
     "he": "^1.2.0",
     "imdb-api": "^4.0.3",
+    "libnpmsearch": "^3.0.0",
     "mal-scraper": "^2.6.8",
     "mathjs": "^7.0.0",
     "moment": "^2.25.3",
