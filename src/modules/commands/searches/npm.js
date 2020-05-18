@@ -20,23 +20,26 @@ module.exports = {
             return message.client.embed.errors("noQuery", message);
         }
 
-        const result = await npm(query, {sortBy: "popularity"});
-
-        const npmEmbed = new MessageEmbed()
-            .setColor(Colors.RED)
-            .setAuthor("NPM Search Engine", "https://i.imgur.com/CJ70ktz.png", "https://www.npmjs.com/")
-            .setTitle(result[0].name)
-            .setURL(result[0].links ? result[0].links.npm : "None")
-            .setDescription(stripIndents`
-                _Version:_ **${result[0].version}**
-                _Publisher:_ ${result[0].publisher.username}
-                _Date:_ ${moment(result[0].date).format("MMMM D, YYYY")}
-                _Repository:_ ${result[0].links.repository ? result[0].links.repository : "None"}
-                _Description:_ ${result[0].description ? result[0].description : "None"}
-                _Keywords:_ ${result[0].keywords ? result[0].keywords.join(", ") : "None"}`)
+        npm(query, {sortBy: "popularity"}).then((res) => {
+            const npmEmbed = new MessageEmbed()
+            .setColor(Colors.NPM)
+            .setAuthor("NPM Search Engine", "https://i.imgur.com/7hzjnuJ.png", "https://www.npmjs.com/")
+            .setTitle(res[0].name)
+            .setURL(res[0].links ? res[0].links.npm : "None")
+            .setThumbnail(`https://i.imgur.com/CJ70ktz.png`)
+            .setDescription(res[0].description ? res[0].description : "None")
+            .addField("__**Details**__", stripIndents`
+                _Version:_ **${res[0].version}**
+                _Publisher:_ **${res[0].publisher.username}**
+                _Date:_ **${moment(res[0].date).format("MMMM D, YYYY")}**
+                _Repository:_ **${res[0].links.repository ? res[0].links.repository : "None"}**
+                _Keywords:_ **${res[0].keywords ? res[0].keywords.join(", ") : "None"}**`)
             .setFooter("Powered by NPM")
             .setTimestamp();
         
         message.channel.send(npmEmbed);
+        }).catch(() => {
+            return message.client.embed.errors("invalidQuery", message);
+        });
     }
 };

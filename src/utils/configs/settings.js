@@ -42,6 +42,7 @@ module.exports = {
         "IMDB": "f3ce13",
         "INSTAGRAM": "e1306c",
         "MAL": "2e51a2",
+        "NPM": "cc3534",
         "STEAM": "2a475e",
         "YOUTUBE": "c4302b",
         "WIKIPEDIA": "6b6b6b"
