@@ -13,6 +13,11 @@ module.exports = {
                 .setDescription(`💢 **${message.author.tag}**, You must provide a search query!`)
                 break;
             }
+            case "invalidQuery": {
+                embed.setTitle("ERROR!")
+                .setDescription(`💢 **${message.author.tag}**, No results were found!`)
+                break;
+            }
             default: {
                 embed.setTitle("ERROR!")
                 .setDescription(`💢 **${message.author.tag}**, Sorry, but an error has occured.`)
