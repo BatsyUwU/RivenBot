@@ -16,7 +16,7 @@ module.exports = {
         accessableby: "Members"
     },
     run: async (client, message, args) => {
-        let city = args.join("").toLowerCase();
+        let city = args.join(" ").toLowerCase().trim();
         if (!city) {
             return Errors.wrongText(message, "Please provide me a city to search up!");
         }
