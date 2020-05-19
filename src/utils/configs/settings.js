@@ -48,9 +48,12 @@ module.exports = {
         "WIKIPEDIA": "6b6b6b"
     },
     Emotes: {
-        "ONLINE": "<:online:702005110636806275>",
-        "IDLE": "<:idle:702005207625891952>",
-        "DND": "<:dnd:702005226504454165>",
-        "OFFLINE": "<:offline:702005245114318889>"
+        "ONLINE": "<:online:712397262256472075>",
+        "IDLE": "<:idle:712397201955094708>",
+        "DND": "<:dnd:712397154836283392>",
+        "OFFLINE": "<:offline:712397086100029440>",
+        "DEVELOPER": "<:developer:712397604192780328>",
+        "AGREE": "<:agree:712400479367200789>",
+        "DISAGREE": "<:disagree:712400503333715999>"
     }
 };
