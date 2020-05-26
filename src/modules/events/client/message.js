@@ -5,8 +5,8 @@ module.exports = async (client, message) => {
         return
     };
 
-    const mentionRegex = RegExp(`^<@!${client.user.id}>$`);
-    const mentionRegexPrefix = RegExp(`^<@!${client.user.id}> `);
+    const mentionRegex = RegExp(`^<@!?${client.user.id}>$`);
+    const mentionRegexPrefix = RegExp(`^<@!?${client.user.id}> `);
 
     if (message.content.match(mentionRegex)) {
         return message.channel.send(`My prefix for ${message.guild.name} is \`${Clients.PREFIX}\`.`);
