@@ -79,21 +79,21 @@ module.exports = {
                 else if (reaction.emoji.name === "🇩") response = "D";
                 else response = "skip";
                 await reaction.remove(reaction.users.cache.filter(user => user !== client.user).first());
-                const embed = new MessageEmbed().setColor(0x00FFFF)
+                const embed = new MessageEmbed().setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor)
                 if (response === "skip") {
                     embed.setAuthor("⏩ Skipped").setDescription(`You chose to skip the session ~~because you're dumb~~. The correct answer was **${h.decode(quiz.correct_answer)}**.`).setFooter("Trivia session ended.");
                     ongoing = undefined;
                     return message.channel.send({embed});
                 }
                 const choice = randomChoices[["a", "b", "c", "d"].indexOf(response.toLowerCase())];
-                if (choice === h.decode(quiz.correct_answer)) embed.setAuthor("✅ Accepted").setDescription(`Congratulation! You have solved this trivia. The correct answer was **${h.decode(quiz.correct_answer)}**.`).setFooter("Trivia session ended.");
-                else embed.setAuthor("❌ Wrong Answer").setDescription(`Unfortunately, that's the wrong answer. The correct answer was **${h.decode(quiz.correct_answer)}**, and you chose **${randomChoices[["a", "b", "c", "d"].indexOf(response.toLowerCase())]}**.`).setFooter("Trivia session ended.");
+                if (choice === h.decode(quiz.correct_answer)) embed.setAuthor("✅ Accepted").setDescription(`Congratulation! You have solved this trivia. The correct answer was ||**${h.decode(quiz.correct_answer)}**||.`).setFooter("Trivia session ended.");
+                else embed.setAuthor("❌ Wrong Answer").setDescription(`Unfortunately, that's the wrong answer. The correct answer was ||**${h.decode(quiz.correct_answer)}**||, and you chose **${randomChoices[["a", "b", "c", "d"].indexOf(response.toLowerCase())]}**.`).setFooter("Trivia session ended.");
                 ongoing = undefined;
                 return message.channel.send({embed});
             });
             collector.on('end', async (reaction) => {
                 if (!ongoing) return;
-                const embed = new MessageEmbed().setColor(0x00FFFF).setAuthor("⌛ Timed out").setDescription(`The session timed out as you did not answer within 30 seconds. The correct answer was **${h.decode(quiz.correct_answer)}**.`).setFooter("Trivia session ended.");
+                const embed = new MessageEmbed().setColor(roleColor === "#000000" ? Colors.CUSTOM : roleColor).setAuthor("⌛ Timed out").setDescription(`The session timed out as you did not answer within 30 seconds. The correct answer was ||**${h.decode(quiz.correct_answer)}**||.`).setFooter("Trivia session ended.");
                 return message.channel.send({embed});
             })
         
