@@ -51,7 +51,6 @@ module.exports = {
             const quiz = body.results[0];
             const choices = quiz.incorrect_answers.map(ans => h.decode(ans));
             choices.push(h.decode(quiz.correct_answer));
-            console.log(h.decode(quiz.correct_answer));
             const randomChoices = new Array(4);
             for (let i = 0; i < 4; i++) {
                 randomChoices[i] = choices[Math.floor(Math.random() * choices.length)];
