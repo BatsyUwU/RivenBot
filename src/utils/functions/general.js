@@ -39,5 +39,24 @@ module.exports = {
         return message
             .awaitReactions(filter, { max: 1, time: time})
             .then(collected => collected.first() && collected.first().emoji.name);
+    },
+    resolveUser: async (message, search) => {
+        let user = null;
+        if(!search || typeof search !== "string") return;
+        // Try ID search
+        if(search.match(/^<@!?(\d+)>$/)){
+            let id = search.match(/^<@!?(\d+)>$/)[1];
+            user = message.client.users.fetch(id).catch((err) => {});
+            if(user) return user;
+        }
+        // Try username search
+        if(search.match(/^!?(\w+)#(\d+)$/)){
+            let username = search.match(/^!?(\w+)#(\d+)$/)[0];
+            let discriminator = search.match(/^!?(\w+)#(\d+)$/)[1];
+            user = message.client.users.find((u) => u.username === username && u.discriminator === discriminator);
+            if(user) return user;
+        }
+        user = await message.client.users.fetch(search).catch(() => {});
+        return user;
     }
 };
