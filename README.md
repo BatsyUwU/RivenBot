@@ -57,7 +57,7 @@ $ npm install
 $ cp example.env .env
 
 # Run the bot!
-$ node src/bot.js
+$ node src/index
 ```
 
 ## Configuration

@@ -1,10 +1,10 @@
 {
   "name": "riven",
-  "version": "2.2.2-beta",
+  "version": "2.2.4-beta",
   "description": "Management Server",
-  "main": "bot.js",
+  "main": "src/index",
   "scripts": {
-    "start": "node src/bot.js",
+    "start": "node src/index",
     "test": "test --passWithNoTests"
   },
   "repository": {
@@ -23,7 +23,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
     "@vitalets/google-translate-api": "^3.0.0",
-    "ascii-table": "0.0.9",
+    "ascii-table": "^0.0.9",
     "axios": "^0.19.2",
     "common-tags": "^1.8.0",
     "discord.js": "^12.2.0",
